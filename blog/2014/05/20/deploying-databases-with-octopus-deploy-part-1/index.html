@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Another Level of Indirection</title>
+  <title>Deploying Databases with Octopus Deploy: Part 1 - Another Level of Indirection</title>
   <meta name="author" content="Dan Piessens">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://dpiessens.github.io/">
+  <link rel="canonical" href="http://dpiessens.github.io/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
@@ -79,15 +79,12 @@
   <div id="body"  >
     <div id="main">
       <div id="content">
-        <div class="blog-index">
+        <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/">Deploying Databases With Octopus Deploy: Part 1</a></h1>
+      <h1 class="entry-title">Deploying Databases With Octopus Deploy: Part 1</h1>
     
     
       <p class="meta">
@@ -105,14 +102,14 @@
 
 <time datetime="2014-05-20T15:00:55-05:00" pubdate data-updated="true">May 20<span>th</span>, 2014</time>
         
-         | <a href="/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>One of the most common questions I get when helping people with Continuous Delivery is how to I push updates to my database? The traditional mindset is often create a folder of SQL scripts and make the deployment push the newest ones. The problem that often arises from this is there&rsquo;s no rollback and things often get missed. There&rsquo;s got to be a better way! Assuming your organization is (or will become) comfortable with tooling doing your updates, there&rsquo;s some great options you have.</p>
+<div class="entry-content"><p>One of the most common questions I get when helping people with Continuous Delivery is how to I push updates to my database? The traditional mindset is often create a folder of SQL scripts and make the deployment push the newest ones. The problem that often arises from this is there&rsquo;s no rollback and things often get missed. There&rsquo;s got to be a better way! Assuming your organization is (or will become) comfortable with tooling doing your updates, there&rsquo;s some great options you have.</p>
 
 <p>I want to use the next three posts to describe the 3 most common SQL deployment problems:</p>
 
@@ -243,18 +240,77 @@
 
 <p>Once you save that add a variable named <em>ConnectionString</em> to your deployment variables and set it for your environments. Once that&rsquo;s in place you should be able to deploy your SQL database projects!</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Dan Piessens</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2014-05-20T15:00:55-05:00" pubdate data-updated="true">May 20<span>th</span>, 2014</time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/blog/categories/dot-net/'>.NET</a>, <a class='category' href='/blog/categories/continuous-delivery/'>Continuous Delivery</a>, <a class='category' href='/blog/categories/database/'>Database</a>, <a class='category' href='/blog/categories/deployment/'>Deployment</a>, <a class='category' href='/blog/categories/octopus-deploy/'>Octopus Deploy</a>
+  
+</span>
+
+
+    </p>
     
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://dpiessens.github.io/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/" data-via="dpiessens" data-counturl="http://dpiessens.github.io/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/" >Tweet</a>
+  
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><script type="text/javascript">
+      var disqus_shortname = 'gustavocasogithubio';
+      
+        
+        var disqus_identifier = 'http://gustavocaso.github.io/2014/04/integrate-disqus-with-octopress/';
+        var disqus_url = 'http://gustavocaso.github.io/2014/04/integrate-disqus-with-octopress/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -271,7 +327,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/dpiessens">@dpiessens</a> on GitHub
@@ -304,6 +360,7 @@
   
 </aside>
 
+
       </div>
     </div>
     <footer role="contentinfo"><p>
@@ -318,7 +375,10 @@
       var disqus_shortname = 'dpiessens';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://dpiessens.github.io/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/';
+        var disqus_url = 'http://dpiessens.github.io/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

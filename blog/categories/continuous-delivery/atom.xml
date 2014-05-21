@@ -1,118 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Another Level of Indirection</title>
-  <meta name="author" content="Dan Piessens">
-
-  
-  <meta name="description" content="One of the most common questions I get when helping people with Continuous Delivery is how to I push updates to my database? The traditional mindset &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://dpiessens.github.io/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Another Level of Indirection" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=Arvo:400,400italic,700,700italic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Merienda:700" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-46643958-2']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-</head>
-
-<body>
-  <div id="navigation">
-    <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:dpiessens.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  </div>
-  <header role="banner"><hgroup>
-  <h1><a href="/">Another Level of Indirection</a></h1>
-  
-    <h2>A journey through the endless maze of Agile, DevOps, technology and life.</h2>
-  
-</hgroup>
-
-</header>
-  <div id="body"  >
-    <div id="main">
-      <div id="content">
-        <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[Category: Continuous Delivery | Another Level of Indirection]]></title>
+  <link href="http://dpiessens.github.io/blog/categories/continuous-delivery/atom.xml" rel="self"/>
+  <link href="http://dpiessens.github.io/"/>
+  <updated>2014-05-21T12:21:11-05:00</updated>
+  <id>http://dpiessens.github.io/</id>
+  <author>
+    <name><![CDATA[Dan Piessens]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/">Deploying Databases With Octopus Deploy: Part 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2014-05-20T15:00:55-05:00" pubdate data-updated="true">May 20<span>th</span>, 2014</time>
-        
-         | <a href="/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>One of the most common questions I get when helping people with Continuous Delivery is how to I push updates to my database? The traditional mindset is often create a folder of SQL scripts and make the deployment push the newest ones. The problem that often arises from this is there&rsquo;s no rollback and things often get missed. There&rsquo;s got to be a better way! Assuming your organization is (or will become) comfortable with tooling doing your updates, there&rsquo;s some great options you have.</p>
+  <entry>
+    <title type="html"><![CDATA[Deploying Databases with Octopus Deploy: Part 1]]></title>
+    <link href="http://dpiessens.github.io/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/"/>
+    <updated>2014-05-20T15:00:55-05:00</updated>
+    <id>http://dpiessens.github.io/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1</id>
+    <content type="html"><![CDATA[<p>One of the most common questions I get when helping people with Continuous Delivery is how to I push updates to my database? The traditional mindset is often create a folder of SQL scripts and make the deployment push the newest ones. The problem that often arises from this is there&rsquo;s no rollback and things often get missed. There&rsquo;s got to be a better way! Assuming your organization is (or will become) comfortable with tooling doing your updates, there&rsquo;s some great options you have.</p>
 
 <p>I want to use the next three posts to describe the 3 most common SQL deployment problems:</p>
 
@@ -131,7 +37,7 @@
 
 <p>To put together the manifest add a NuGet package that looks like the snippet below. In this case make sure you replace the <em>title</em> and <em>name</em> tags from MyApplication to your application name.</p>
 
-<figure class='code'><figcaption><span>Nuspec NuGet Packaging File (ProjectPackage.nuspec)</span> <a href='/downloads/code/DeployingDatabasesWithOctopus/ProjectPackage.nuspec'>download</a></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Nuspec NuGet Packaging File (ProjectPackage.nuspec)</span> <a href='/downloads/code/DeployingDatabasesWithOctopus/ProjectPackage.nuspec'>download</a></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -149,27 +55,26 @@
 <span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 </span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;metadata&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;id&gt;</span>MyApplication<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;title&gt;</span>MyApplication<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;version&gt;</span>$version$<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;requireLicenseAcceptance&gt;</span>false<span class="nt">&lt;/requireLicenseAcceptance&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;description&gt;</span>A Database Deployment Package<span class="nt">&lt;/description&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/metadata&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;files&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;bin\Release\*.*&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>	<span class="nt">&lt;metadata&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;id&gt;</span>MyApplication<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;title&gt;</span>MyApplication<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;version&gt;</span>$version$<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;requireLicenseAcceptance&gt;</span>false<span class="nt">&lt;/requireLicenseAcceptance&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;description&gt;</span>A Database Deployment Package<span class="nt">&lt;/description&gt;</span>
+</span><span class='line'>	<span class="nt">&lt;/metadata&gt;</span>
+</span><span class='line'>	<span class="nt">&lt;files&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;bin\Release\*.*&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'>        <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;deployment\DeploySettings.publish.xml&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'>        <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;deployment\Deploy.ps1&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/files&gt;</span>
+</span><span class='line'>	<span class="nt">&lt;/files&gt;</span>
 </span><span class='line'><span class="nt">&lt;/package&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>A few things to note about the packaging: The main output from the project (assuming you use release mode) is the bin directory. It should contain everything you need to use to deploy the project. Additionally there&rsquo;s the <em>DeploymentSetting.publish.xml</em> file. This is the settings file you can define as part of the project to indicate what the project should do on deploy. A lot of people miss this file and it really impacts the deployment from critical scenarios. One simple example when a column could result in a data loss; you may want to allow or deny it. Most people allow it but you need to specify it in this file. Finally there&rsquo;s the <em>Deploy.ps1</em> file. This is the file that takes care of the actual deployment.</p>
 
 <p>The Deploy.ps1 file is what does most of the magic. The script is really straight forward, it first checks to see if you have a variable named <em>ConnectionString</em>. Since that is needed to point at the database you want to deploy to, we fail if it doesn&rsquo;t exist. Next, we get the other things we need to deploy. We get the content directory that we specified in the NuGet file and find the .dacpac file that the CI server will create from the project. We&rsquo;ll also get the publish settings file. The final path looks for SQL Server Data Tools to do the deployment, the next section will discuss that setup. I&rsquo;ve included some output lines to write that path information. Finally the last line if the file performs the publish to the target server. It pipes the output to a <code>Write-Host</code> command so it logs any output while it&rsquo;s running.</p>
 
-<figure class='code'><figcaption><span>Deployment Script (Deploy.ps1)</span> <a href='/downloads/code/DeployingDatabasesWithOctopus/Deploy.ps1'>download</a></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Deployment Script (Deploy.ps1)</span> <a href='/downloads/code/DeployingDatabasesWithOctopus/Deploy.ps1'>download</a></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -203,8 +108,8 @@
 </span><span class='line'><span class="c">#   ConnectionString         - The .Net connection string for the DB</span>
 </span><span class='line'><span class="k">if</span> <span class="p">(!</span> <span class="nv">$ConnectionString</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="nb">Write-Host</span> <span class="s2">&quot;Missing required variable ConnectionString&quot;</span> <span class="n">-ForegroundColor</span> <span class="n">Yellow</span>
-</span><span class='line'>  <span class="n">exit</span> <span class="n">1</span>
+</span><span class='line'>	<span class="nb">Write-Host</span> <span class="s2">&quot;Missing required variable ConnectionString&quot;</span> <span class="n">-ForegroundColor</span> <span class="n">Yellow</span>
+</span><span class='line'>	<span class="n">exit</span> <span class="n">1</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="c"># Internal Variables</span>
@@ -224,8 +129,7 @@
 </span><span class='line'><span class="c"># Run the deployment tool</span>
 </span><span class='line'><span class="nb">Set-Location</span> <span class="nv">$sqlPackageDir</span>
 </span><span class='line'><span class="p">&amp;</span> <span class="nv">$sqlPackageExe</span> <span class="p">/</span><span class="n">Action</span><span class="err">:</span><span class="n">Publish</span> <span class="p">/</span><span class="n">SourceFile</span><span class="err">:</span><span class="s2">&quot;$dbFilePath&quot;</span> <span class="p">/</span><span class="n">TargetConnectionString</span><span class="err">:</span><span class="s2">&quot;$ConnectionString&quot;</span> <span class="p">/</span><span class="n">Profile</span><span class="err">:</span><span class="s2">&quot;$publishSettingsPath&quot;</span> <span class="p">|</span> <span class="nb">Write-Host</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>SQL Server Setup</h2>
 
@@ -242,111 +146,7 @@
 <p><img src="/images/posts/DeployDatabaseProjectOctopusStep.png"></p>
 
 <p>Once you save that add a variable named <em>ConnectionString</em> to your deployment variables and set it for your environments. Once that&rsquo;s in place you should be able to deploy your SQL database projects!</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/">Deploying Databases with Octopus Deploy: Part 1</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/dpiessens">@dpiessens</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'dpiessens',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
-  
-</aside>
-
-      </div>
-    </div>
-    <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Dan Piessens -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a></span>
-</p>
-
-</footer>
-    
-
-<script type="text/javascript">
-      var disqus_shortname = 'dpiessens';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+</feed>
