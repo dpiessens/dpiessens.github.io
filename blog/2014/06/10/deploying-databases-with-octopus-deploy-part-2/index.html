@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Deploying Databases With Octopus Deploy: Part 2 - Another Level of Indirection</title>
+  <meta name="author" content="Dan Piessens">
+
+  
+  <meta name="description" content="Continuing with my series on deploying databases with Octopus Deploy, I want to cover an area that people commonly know is possible but often &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://dpiessens.github.io/blog/2014/06/10/deploying-databases-with-octopus-deploy-part-2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Another Level of Indirection" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Arvo:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Merienda:700" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46643958-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+  <div id="navigation">
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:dpiessens.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  </div>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Another Level of Indirection</a></h1>
+  
+    <h2>A journey through the endless maze of Agile, DevOps, technology and life.</h2>
+  
+</hgroup>
+
+</header>
+  <div id="body"  >
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Deploying Databases With Octopus Deploy: Part 2</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-10T08:00:00-05:00" pubdate data-updated="true">Jun 10<span>th</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Continuing with my series on deploying databases with Octopus Deploy, I want to cover an area that people commonly know is possible but often struggle with the details: Deploying with Entity Framework Migrations.</p>
+
+<p>Entity Framework Migrations are in concept simple. The EF team provides a great executable (migrate.exe) located in the tools folder of the NuGet package to perform the migration. Packaging it up can be a little more tricky.</p>
+
+<!-- more -->
+
+
+<h2>Project Setup</h2>
+
+<p>When creating your deployment package for Octopus, you&rsquo;re going to want to include the migrate.exe file. Since NuGet packages everything from the root of the project, you&rsquo;re going to need to provide the path to the file relative to the project root. You&rsquo;re also going to need the PowerShell script to run the executable and everything you have compiled for the project (in this case what&rsquo;s in the release directory). An example of this is in the MyApp.nuspec file below.</p>
+
+<figure class='code'><figcaption><span>Nuspec NuGet Packaging File (MyApp.nuspec)</span> <a href='/downloads/code/DeployingDatabasesWithOctopus2/MyApp.nuspec'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;metadata&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;id&gt;</span>MyApp.Database<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>MyApp.Database<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>$version$<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;authors&gt;</span>Someone<span class="nt">&lt;/authors&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;owners&gt;</span>Someone<span class="nt">&lt;/owners&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;requireLicenseAcceptance&gt;</span>false<span class="nt">&lt;/requireLicenseAcceptance&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;description&gt;</span>My Application Database Deployment Package<span class="nt">&lt;/description&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/metadata&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;files&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;bin\Release\*.*&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;..\packages\EntityFramework.6.1.0\tools\migrate.exe&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;Deployment\Deploy.ps1&quot;</span> <span class="na">target=</span><span class="s">&quot;&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/files&gt;</span>
+</span><span class='line'><span class="nt">&lt;/package&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The Deploy.ps1 deployment script is fairly simple, the first several lines setup the paths to the executable and tooling. The last line, 18, is the one that does all the work. The first argument is the .dll that contains the migration scripts. You will want to change this for your project. The second argument (<em>/startUpConfigurationFile</em>) let&rsquo;s the tool know the application has a configuration file that should be respected. This can be necessary if you are trying to bootstrap things like the ASP.NET 1.0 Identity Provider&hellip; but that&rsquo;s for another post. The final arguments specify the target server and driver and that the system should do verbose logging. I&rsquo;ve found this to be very helpful when debugging problems with deployment.</p>
+
+<figure class='code'><figcaption><span>Deployment Script (Deploy.ps1)</span> <a href='/downloads/code/DeployingDatabasesWithOctopus2/Deploy.ps1'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ps1'><span class='line'><span class="c"># These variables should be set via the Octopus web portal:</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c">#   ConnectionString         - The .Net connection string for the DB</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nb">Write-Host</span> <span class="s2">&quot;Connection String: &lt;&quot;</span><span class="nv">$ConnectionString</span><span class="s2">&quot;&gt;&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Get the exe name based on the directory</span>
+</span><span class='line'><span class="nv">$contentPath</span>  <span class="p">=</span> <span class="p">(</span><span class="nb">Join-Path</span> <span class="nv">$OctopusOriginalPackageDirectoryPath</span> <span class="s2">&quot;content&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nv">$fullPath</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Join-Path</span> <span class="nv">$contentPath</span> <span class="s2">&quot;migrate.exe&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nb">Write-Host</span> <span class="s2">&quot;Migrate Path:&quot;</span> <span class="nv">$fullPath</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">cd</span> <span class="nv">$contentPath</span>
+</span><span class='line'><span class="nb">write-host</span> <span class="s2">&quot;Working Dir: &quot;</span><span class="p">$(</span><span class="nb">get-location</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Run the migration utility</span>
+</span><span class='line'><span class="p">&amp;</span> <span class="s2">&quot;.\migrate.exe&quot;</span> <span class="n">MyApp</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">dll</span> <span class="p">/</span><span class="n">startUpConfigurationFile</span><span class="p">=</span><span class="n">MyApp</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">dll</span><span class="p">.</span><span class="n">config</span> <span class="p">/</span><span class="n">connectionString</span><span class="p">=</span><span class="nv">$ConnectionString</span> <span class="p">/</span><span class="n">connectionProviderName</span><span class="p">=</span><span class="s2">&quot;System.Data.SqlClient&quot;</span> <span class="p">/</span><span class="n">verbose</span> <span class="p">|</span> <span class="nb">Write-Host</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Deployment In Octopus</h2>
+
+<p>Building the deployment package in your CI server is simple. If you&rsquo;re using TeamCity, you can use <a href="http://docs.octopusdeploy.com/display/OD/TeamCity">OctoPack</a> as part of the build, or I would suggest creating a <a href="http://confluence.jetbrains.com/display/TCD8/NuGet+Pack">NuGet Package step</a> to package up the file. From there you create a publish step to push it to your local repository or the new Octopus Deploy package repository if you&rsquo;re using version 2.3 or later.</p>
+
+<p>Once you have the deployment package, setting this up in Octopus is really straight forward. Create a new deployment step, I chose &ldquo;Deploy Database&rdquo;. Select the deployment package, the role you setup earlier and Configuration Variables feature to transform any needed settings.</p>
+
+<p><img src="/images/posts/DeployDatabaseProjectOctopusStep.png"></p>
+
+<p>Once you save that add a variable named <em>ConnectionString</em> to your deployment variables and set it for your environments. Once that&rsquo;s in place you should be able to deploy your EF database projects.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Dan Piessens</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-10T08:00:00-05:00" pubdate data-updated="true">Jun 10<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dot-net/'>.NET</a>, <a class='category' href='/blog/categories/continuous-delivery/'>Continuous Delivery</a>, <a class='category' href='/blog/categories/database/'>Database</a>, <a class='category' href='/blog/categories/deployment/'>Deployment</a>, <a class='category' href='/blog/categories/entity-framework/'>Entity Framework</a>, <a class='category' href='/blog/categories/octopus-deploy/'>Octopus Deploy</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://dpiessens.github.io/blog/2014/06/10/deploying-databases-with-octopus-deploy-part-2/" data-via="dpiessens" data-counturl="http://dpiessens.github.io/blog/2014/06/10/deploying-databases-with-octopus-deploy-part-2/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/" title="Previous Post: Deploying Databases with Octopus Deploy: Part 1">&laquo; Deploying Databases with Octopus Deploy: Part 1</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><script type="text/javascript">
+      var disqus_shortname = 'gustavocasogithubio';
+      
+        
+        var disqus_identifier = 'http://gustavocaso.github.io/2014/04/integrate-disqus-with-octopress/';
+        var disqus_url = 'http://gustavocaso.github.io/2014/04/integrate-disqus-with-octopress/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/06/10/deploying-databases-with-octopus-deploy-part-2/">Deploying Databases With Octopus Deploy: Part 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/05/20/deploying-databases-with-octopus-deploy-part-1/">Deploying Databases with Octopus Deploy: Part 1</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dpiessens">@dpiessens</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dpiessens',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Dan Piessens -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a></span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'dpiessens';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://dpiessens.github.io/blog/2014/06/10/deploying-databases-with-octopus-deploy-part-2/';
+        var disqus_url = 'http://dpiessens.github.io/blog/2014/06/10/deploying-databases-with-octopus-deploy-part-2/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

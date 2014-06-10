@@ -4,7 +4,7 @@
   <title><![CDATA[Category: .NET | Another Level of Indirection]]></title>
   <link href="http://dpiessens.github.io/blog/categories/dot-net/atom.xml" rel="self"/>
   <link href="http://dpiessens.github.io/"/>
-  <updated>2014-06-10T09:16:19-05:00</updated>
+  <updated>2014-06-10T09:40:17-05:00</updated>
   <id>http://dpiessens.github.io/</id>
   <author>
     <name><![CDATA[Dan Piessens]]></name>
@@ -12,6 +12,110 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Deploying Databases With Octopus Deploy: Part 2]]></title>
+    <link href="http://dpiessens.github.io/blog/2014/06/10/deploying-databases-with-octopus-deploy-part-2/"/>
+    <updated>2014-06-10T08:00:00-05:00</updated>
+    <id>http://dpiessens.github.io/blog/2014/06/10/deploying-databases-with-octopus-deploy-part-2</id>
+    <content type="html"><![CDATA[<p>Continuing with my series on deploying databases with Octopus Deploy, I want to cover an area that people commonly know is possible but often struggle with the details: Deploying with Entity Framework Migrations.</p>
+
+<p>Entity Framework Migrations are in concept simple. The EF team provides a great executable (migrate.exe) located in the tools folder of the NuGet package to perform the migration. Packaging it up can be a little more tricky.</p>
+
+<!-- more -->
+
+
+<h2>Project Setup</h2>
+
+<p>When creating your deployment package for Octopus, you&rsquo;re going to want to include the migrate.exe file. Since NuGet packages everything from the root of the project, you&rsquo;re going to need to provide the path to the file relative to the project root. You&rsquo;re also going to need the PowerShell script to run the executable and everything you have compiled for the project (in this case what&rsquo;s in the release directory). An example of this is in the MyApp.nuspec file below.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Nuspec NuGet Packaging File (MyApp.nuspec)</span> <a href='/downloads/code/DeployingDatabasesWithOctopus2/MyApp.nuspec'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>	<span class="nt">&lt;metadata&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;id&gt;</span>MyApp.Database<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;title&gt;</span>MyApp.Database<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;version&gt;</span>$version$<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;authors&gt;</span>Someone<span class="nt">&lt;/authors&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;owners&gt;</span>Someone<span class="nt">&lt;/owners&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;requireLicenseAcceptance&gt;</span>false<span class="nt">&lt;/requireLicenseAcceptance&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;description&gt;</span>My Application Database Deployment Package<span class="nt">&lt;/description&gt;</span>
+</span><span class='line'>	<span class="nt">&lt;/metadata&gt;</span>
+</span><span class='line'>	<span class="nt">&lt;files&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;bin\Release\*.*&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;..\packages\EntityFramework.6.1.0\tools\migrate.exe&quot;</span> <span class="na">target=</span><span class="s">&quot;content&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>		<span class="nt">&lt;file</span> <span class="na">src=</span><span class="s">&quot;Deployment\Deploy.ps1&quot;</span> <span class="na">target=</span><span class="s">&quot;&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>	<span class="nt">&lt;/files&gt;</span>
+</span><span class='line'><span class="nt">&lt;/package&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The Deploy.ps1 deployment script is fairly simple, the first several lines setup the paths to the executable and tooling. The last line, 18, is the one that does all the work. The first argument is the .dll that contains the migration scripts. You will want to change this for your project. The second argument (<em>/startUpConfigurationFile</em>) let&rsquo;s the tool know the application has a configuration file that should be respected. This can be necessary if you are trying to bootstrap things like the ASP.NET 1.0 Identity Provider&hellip; but that&rsquo;s for another post. The final arguments specify the target server and driver and that the system should do verbose logging. I&rsquo;ve found this to be very helpful when debugging problems with deployment.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Deployment Script (Deploy.ps1)</span> <a href='/downloads/code/DeployingDatabasesWithOctopus2/Deploy.ps1'>download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ps1'><span class='line'><span class="c"># These variables should be set via the Octopus web portal:</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c">#   ConnectionString         - The .Net connection string for the DB</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nb">Write-Host</span> <span class="s2">&quot;Connection String: &lt;&quot;</span><span class="nv">$ConnectionString</span><span class="s2">&quot;&gt;&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Get the exe name based on the directory</span>
+</span><span class='line'><span class="nv">$contentPath</span>  <span class="p">=</span> <span class="p">(</span><span class="nb">Join-Path</span> <span class="nv">$OctopusOriginalPackageDirectoryPath</span> <span class="s2">&quot;content&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nv">$fullPath</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Join-Path</span> <span class="nv">$contentPath</span> <span class="s2">&quot;migrate.exe&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nb">Write-Host</span> <span class="s2">&quot;Migrate Path:&quot;</span> <span class="nv">$fullPath</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">cd</span> <span class="nv">$contentPath</span>
+</span><span class='line'><span class="nb">write-host</span> <span class="s2">&quot;Working Dir: &quot;</span><span class="p">$(</span><span class="nb">get-location</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Run the migration utility</span>
+</span><span class='line'><span class="p">&amp;</span> <span class="s2">&quot;.\migrate.exe&quot;</span> <span class="n">MyApp</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">dll</span> <span class="p">/</span><span class="n">startUpConfigurationFile</span><span class="p">=</span><span class="n">MyApp</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">dll</span><span class="p">.</span><span class="n">config</span> <span class="p">/</span><span class="n">connectionString</span><span class="p">=</span><span class="nv">$ConnectionString</span> <span class="p">/</span><span class="n">connectionProviderName</span><span class="p">=</span><span class="s2">&quot;System.Data.SqlClient&quot;</span> <span class="p">/</span><span class="n">verbose</span> <span class="p">|</span> <span class="nb">Write-Host</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Deployment In Octopus</h2>
+
+<p>Building the deployment package in your CI server is simple. If you&rsquo;re using TeamCity, you can use <a href="http://docs.octopusdeploy.com/display/OD/TeamCity">OctoPack</a> as part of the build, or I would suggest creating a <a href="http://confluence.jetbrains.com/display/TCD8/NuGet+Pack">NuGet Package step</a> to package up the file. From there you create a publish step to push it to your local repository or the new Octopus Deploy package repository if you&rsquo;re using version 2.3 or later.</p>
+
+<p>Once you have the deployment package, setting this up in Octopus is really straight forward. Create a new deployment step, I chose &ldquo;Deploy Database&rdquo;. Select the deployment package, the role you setup earlier and Configuration Variables feature to transform any needed settings.</p>
+
+<p><img src="/images/posts/DeployDatabaseProjectOctopusStep.png"></p>
+
+<p>Once you save that add a variable named <em>ConnectionString</em> to your deployment variables and set it for your environments. Once that&rsquo;s in place you should be able to deploy your EF database projects.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Deploying Databases with Octopus Deploy: Part 1]]></title>
