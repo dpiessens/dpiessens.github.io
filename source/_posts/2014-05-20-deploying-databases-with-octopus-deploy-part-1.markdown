@@ -16,6 +16,8 @@ I want to use the next three posts to describe the 3 most common SQL deployment 
 
 I'm going to use [Octopus Deploy](http://www.octopusdeploy.com "Octopus Deploy") to demo how you can deploy this, but assuming you use a deployment tool that has a packaging concept you can use this in any deployment tool.
 
+<!-- more -->
+
 ## Project Setup ##
 The assumption here is that you've created a [SQL Database Project](http://msdn.microsoft.com/en-us/library/hh272702.aspx "SQL Database Project"). If you haven't follow the link for instructions on how to create one. Once you have a project created, we'll need to add the information for our CI server to package up the project. To do this there's two things you'll need: A packaging manifest (in this case a NuGet package) and a helper script to do the actual deployment.
 

@@ -12,6 +12,8 @@ Continuing with my series on deploying databases with Octopus Deploy, I want to 
 
 Entity Framework Migrations are in concept simple. The EF team provides a great executable (migrate.exe) located in the tools folder of the NuGet package to perform the migration. Packaging it up can be a little more tricky.
 
+<!-- more -->
+
 ## Project Setup ##
 When creating your deployment package for Octopus, you're going to want to include the migrate.exe file. Since NuGet packages everything from the root of the project, you're going to need to provide the path to the file relative to the project root. You're also going to need the PowerShell script to run the executable and everything you have compiled for the project (in this case what's in the release directory). An example of this is in the MyApp.nuspec file below.
 
