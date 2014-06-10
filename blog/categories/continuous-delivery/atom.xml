@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Continuous Delivery | Another Level of Indirection]]></title>
   <link href="http://dpiessens.github.io/blog/categories/continuous-delivery/atom.xml" rel="self"/>
   <link href="http://dpiessens.github.io/"/>
-  <updated>2014-05-21T13:32:32-05:00</updated>
+  <updated>2014-06-10T09:16:19-05:00</updated>
   <id>http://dpiessens.github.io/</id>
   <author>
     <name><![CDATA[Dan Piessens]]></name>
@@ -30,6 +30,9 @@
 
 
 <p>I&rsquo;m going to use <a href="http://www.octopusdeploy.com" title="Octopus Deploy">Octopus Deploy</a> to demo how you can deploy this, but assuming you use a deployment tool that has a packaging concept you can use this in any deployment tool.</p>
+
+<!-- more -->
+
 
 <h2>Project Setup</h2>
 

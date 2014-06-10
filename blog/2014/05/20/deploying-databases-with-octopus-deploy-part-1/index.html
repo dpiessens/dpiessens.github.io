@@ -122,6 +122,9 @@
 
 <p>I&rsquo;m going to use <a href="http://www.octopusdeploy.com" title="Octopus Deploy">Octopus Deploy</a> to demo how you can deploy this, but assuming you use a deployment tool that has a packaging concept you can use this in any deployment tool.</p>
 
+<!-- more -->
+
+
 <h2>Project Setup</h2>
 
 <p>The assumption here is that you&rsquo;ve created a <a href="http://msdn.microsoft.com/en-us/library/hh272702.aspx" title="SQL Database Project">SQL Database Project</a>. If you haven&rsquo;t follow the link for instructions on how to create one. Once you have a project created, we&rsquo;ll need to add the information for our CI server to package up the project. To do this there&rsquo;s two things you&rsquo;ll need: A packaging manifest (in this case a NuGet package) and a helper script to do the actual deployment.</p>
