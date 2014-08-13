@@ -4,7 +4,7 @@
   <title><![CDATA[Another Level of Indirection]]></title>
   <link href="http://dpiessens.github.io/atom.xml" rel="self"/>
   <link href="http://dpiessens.github.io/"/>
-  <updated>2014-08-13T12:34:18-05:00</updated>
+  <updated>2014-08-13T12:43:53-05:00</updated>
   <id>http://dpiessens.github.io/</id>
   <author>
     <name><![CDATA[Dan Piessens]]></name>
@@ -20,8 +20,9 @@
     <id>http://dpiessens.github.io/blog/2014/08/13/that-conference-2014-presentation</id>
     <content type="html"><![CDATA[<p>I posted online the slides from my presentation at <a href="https://www.thatconference.com/sessions/session/1228" title="That Conference">That Conference</a>. There are resource links at the end of the presentation. Also see below if you would like to see the sample application I demoed during the presentation.</p>
 
-<p>Slides: <a href="downloads/code/ThatConference2014/BuildingStableAgileCloudApplications.pdf">BuildingStableCloudApplications.pdf</a>
-Source: <a href="https://github.com/dpiessens/cqrs-journey-code">GitHub: dpiessens/cqrs-journey-code</a></p>
+<p>Slides: <a href="downloads/code/ThatConference2014/BuildingStableCloudApplications.pdf">BuildingStableCloudApplications.pdf</a></p>
+
+<p>Source: <a href="https://github.com/dpiessens/cqrs-journey-code">GitHub: dpiessens/cqrs-journey-code</a></p>
 ]]></content>
   </entry>
   
