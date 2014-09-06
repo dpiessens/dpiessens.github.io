@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Database, | Another Level of Indirection]]></title>
-  <link href="http://dpiessens.github.io/blog/categories/database/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Octopus | Another Level of Indirection]]></title>
+  <link href="http://dpiessens.github.io/blog/categories/octopus/atom.xml" rel="self"/>
   <link href="http://dpiessens.github.io/"/>
   <updated>2014-09-06T14:28:52-05:00</updated>
   <id>http://dpiessens.github.io/</id>
