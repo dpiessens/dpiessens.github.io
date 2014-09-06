@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Database, | Another Level of Indirection]]></title>
   <link href="http://dpiessens.github.io/blog/categories/database/atom.xml" rel="self"/>
   <link href="http://dpiessens.github.io/"/>
-  <updated>2014-09-06T14:28:52-05:00</updated>
+  <updated>2014-09-06T14:44:38-05:00</updated>
   <id>http://dpiessens.github.io/</id>
   <author>
     <name><![CDATA[Dan Piessens]]></name>
@@ -33,7 +33,7 @@
 
 <p>The folder structure dictates how things should be loaded. A top level folder groups the type of data. I like to use &ldquo;base&rdquo; for the core data, then a folder for each environment to hold things like test data. Inside those folders should be two additional folders: InsertOnly and Updateable. Files in InsertOnly will be checked by primary key and if the record exists it will be skipped. Files in Updateable will get inserted or updated on each run. Here&rsquo;s an example structure:</p>
 
-<p><img src="/images/posts/DatabaseDataLoader/FileStructure.PNG"></p>
+<p><img src="/images/posts/DatabaseDataLoader/FileStructure.png"></p>
 
 <p>To run the loader simply call the executable with a connection string and a base path similar to this:</p>
 
