@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cloud on Another Level of Indirection</title>
+    <link>http://www.danpiessens.com/categories/cloud/</link>
+    <description>Recent content in Cloud on Another Level of Indirection</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2015 Dan Piessens, All rights reserved.</copyright>
+    <lastBuildDate>Wed, 13 Aug 2014 12:16:24 -0500</lastBuildDate>
+    <atom:link href="http://www.danpiessens.com/categories/cloud/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>That Conference 2014 Presentation</title>
+      <link>http://www.danpiessens.com/post/that-conference-2014-presentation/</link>
+      <pubDate>Wed, 13 Aug 2014 12:16:24 -0500</pubDate>
+      
+      <guid>http://www.danpiessens.com/post/that-conference-2014-presentation/</guid>
+      <description>&lt;p&gt;I posted online the slides from my presentation at &lt;a href=&#34;https://www.thatconference.com/sessions/session/1228&#34; title=&#34;That Conference&#34;&gt;That Conference&lt;/a&gt;. There are resource links at the end of the presentation. Also see below if you would like to see the sample application I demoed during the presentation.&lt;/p&gt;
+
+&lt;p&gt;Slides: &lt;a href=&#34;http://www.danpiessens.com/downloads/code/ThatConference2014/BuildingStableCloudApplications.pdf&#34;&gt;BuildingStableCloudApplications.pdf&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Source: &lt;a href=&#34;https://github.com/dpiessens/cqrs-journey-code&#34;&gt;GitHub: dpiessens/cqrs-journey-code&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Building Stable Cloud Applications: Agile 2014</title>
+      <link>http://www.danpiessens.com/post/building-stable-cloud-applications-agile-2014/</link>
+      <pubDate>Tue, 05 Aug 2014 16:54:17 -0400</pubDate>
+      
+      <guid>http://www.danpiessens.com/post/building-stable-cloud-applications-agile-2014/</guid>
+      <description>&lt;p&gt;I posted online the slides from my presentation at &lt;a href=&#34;http://agile2014.agilealliance.org/program&#34; title=&#34;Agile 2014&#34;&gt;Agile 2014&lt;/a&gt;! It was great to be able to present, but I&amp;rsquo;ve got some more surprises for this talk at &lt;a href=&#34;https://www.thatconference.com&#34; title=&#34;That Conference&#34;&gt;That Conference&lt;/a&gt; on August 13! The presentation PDF is &lt;a href=&#34;http://www.danpiessens.com/downloads/code/Agile2014/BuildingStableAgileCloudApplications.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Deploying Databases With Octopus Deploy: Part 2 -- Another Level of Indirection</title>
+
+    
+
+    
+    <link href="http://www.danpiessens.com/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="http://www.danpiessens.com/css/clean-blog.min.css" rel="stylesheet">
+
+    
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    
+    
+    
+    
+    
+    <link href="http://www.danpiessens.com/css/prism.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://www.danpiessens.com/">Another Level of Indirection</a>
+            </div>
+
+                       
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li>
+                        <a href="http://www.danpiessens.com/">home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://www.danpiessens.com/post/">Archives</a>
+                    </li>
+                    
+                  </ul>
+            </div>
+           
+
+        </div>
+        
+    </nav>
+
+
+    
+    
+    <header class="intro-header" style="background-image: url('http://www.danpiessens.com/img/post-bg.jpg')">
+    
+      <div class="container">
+        <div class="row">
+           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+             <div class="post-heading">
+               <h1>Deploying Databases With Octopus Deploy: Part 2</h1>
+               <h2 class="subheading"></h2>
+               <span class="meta">Posted by <a href="#">Dan Piessens</a> on June 10, 2014
+                 <br />
+                 In 
+
+                 <br />
+                 Tags <a href="http://www.danpiessens.com/tags/octopus-deploy" >octopus deploy</a> <a href="http://www.danpiessens.com/tags/database" >database</a> <a href="http://www.danpiessens.com/tags/deployment" >deployment</a> <a href="http://www.danpiessens.com/tags/.net" >.net</a> <a href="http://www.danpiessens.com/tags/continuous-delivery" >continuous delivery</a> <a href="http://www.danpiessens.com/tags/entity-framework" >entity framework</a> 
+
+               </span>
+             </div>
+           </div>
+        </div>
+      </div>
+    </header>
+
+    
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  
+
+<p>Continuing with my series on deploying databases with Octopus Deploy, I want to cover an area that people commonly know is possible but often struggle with the details: Deploying with Entity Framework Migrations.</p>
+
+<p>Entity Framework Migrations are in concept simple. The EF team provides a great executable (migrate.exe) located in the tools folder of the NuGet package to perform the migration. Packaging it up can be a little more tricky.</p>
+
+<!-- more -->
+
+<h2 id="project-setup:8c8bdc024288e233a9df1eceff3ddfb8">Project Setup</h2>
+
+<p>When creating your deployment package for Octopus, you&rsquo;re going to want to include the migrate.exe file. Since NuGet packages everything from the root of the project, you&rsquo;re going to need to provide the path to the file relative to the project root. You&rsquo;re also going to need the PowerShell script to run the executable and everything you have compiled for the project (in this case what&rsquo;s in the release directory). An example of this is in the MyApp.nuspec file below.</p>
+
+<p>
+<pre class="language-xml" data-src="/downloads/code/deploying-databases-with-octopus-deploy-part-2/MyApp.nuspec"></pre>
+</p>
+
+<p>The Deploy.ps1 deployment script is fairly simple, the first several lines setup the paths to the executable and tooling. The last line, 18, is the one that does all the work. The first argument is the .dll that contains the migration scripts. You will want to change this for your project. The second argument (<em>/startUpConfigurationFile</em>) let&rsquo;s the tool know the application has a configuration file that should be respected. This can be necessary if you are trying to bootstrap things like the ASP.NET 1.0 Identity Provider&hellip; but that&rsquo;s for another post. The final arguments specify the target server and driver and that the system should do verbose logging. I&rsquo;ve found this to be very helpful when debugging problems with deployment.</p>
+
+<p>
+<pre  data-src="/downloads/code/deploying-databases-with-octopus-deploy-part-2/Deploy.ps1"></pre>
+</p>
+
+<h2 id="deployment-in-octopus:8c8bdc024288e233a9df1eceff3ddfb8">Deployment In Octopus</h2>
+
+<p>Building the deployment package in your CI server is simple. If you&rsquo;re using TeamCity, you can use <a href="http://docs.octopusdeploy.com/display/OD/TeamCity">OctoPack</a> as part of the build, or I would suggest creating a <a href="http://confluence.jetbrains.com/display/TCD8/NuGet+Pack">NuGet Package step</a> to package up the file. From there you create a publish step to push it to your local repository or the new Octopus Deploy package repository if you&rsquo;re using version 2.3 or later.</p>
+
+<p>Once you have the deployment package, setting this up in Octopus is really straight forward. Create a new deployment step, I chose &ldquo;Deploy Database&rdquo;. Select the deployment package, the role you setup earlier and Configuration Variables feature to transform any needed settings.</p>
+
+<p>
+<figure >
+    
+        <img src="http://www.danpiessens.com/images/posts/DeployDatabaseProjectOctopusStep.png" />
+    
+    
+</figure>
+</p>
+
+<p>Once you save that add a variable named <em>ConnectionString</em> to your deployment variables and set it for your environments. Once that&rsquo;s in place you should be able to deploy your EF database projects.</p>
+
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+    
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                  <ul class="list-inline text-center">
+                    <li>
+                      <a href="mailto:">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="https://twitter.com/dpiessens">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </a>
+                    </li>
+                    
+                    <li>
+                      <a href="https://github.com/dpiessens">
+                        <span class="fa-stack fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </a>
+                    </li>
+                    
+                  </ul>
+                  <p class="copyright text-muted">2015 Dan Piessens, All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="http://www.danpiessens.com/js/jquery.min.js"></script>
+
+    
+    <script src="http://www.danpiessens.com/js/bootstrap.min.js"></script>
+
+    
+    <script src="http://www.danpiessens.com/js/clean-blog.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-46643958-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+    
+    
+    <script src="http://www.danpiessens.com/javascript/prism.js"></script>
+...
+</body>
+
+</body>
+
+</html>
+

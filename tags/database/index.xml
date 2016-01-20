@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on Another Level of Indirection</title>
+    <link>http://www.danpiessens.com/tags/database/</link>
+    <description>Recent content in Database on Another Level of Indirection</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2015 Dan Piessens, All rights reserved.</copyright>
+    <lastBuildDate>Sat, 06 Sep 2014 15:00:00 -0500</lastBuildDate>
+    <atom:link href="http://www.danpiessens.com/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Deploying databases with Octopus Deploy Part 3</title>
+      <link>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-3/</link>
+      <pubDate>Sat, 06 Sep 2014 15:00:00 -0500</pubDate>
+      
+      <guid>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-3/</guid>
+      <description>
+
+&lt;p&gt;Completing my series on deploying databases with Octopus Deploy, I want to cover how to deal with a common gap when working with SQL Database Projects and SQL Server Data Tools (SSDT): seeding data into the database.&lt;/p&gt;
+
+&lt;p&gt;Most people deal with this by using PostDeployment SQL scripts that do merge queries to insert or update the data. While this technique works, the data isn&amp;rsquo;t very readable and can be difficult to maintain as the data set or number of tables grow. It can also be difficult to work around foreign key constraints to make sure data is loaded in the correct order. Allow me to present an alternative&amp;hellip;&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2 id=&#34;introducing-databasedataloader:27e6dd6eb7db9dd8cc04e86bb947cdcc&#34;&gt;Introducing DatabaseDataLoader&lt;/h2&gt;
+
+&lt;p&gt;I created a simple, open source utility to simplify the problem. The tool is based on using CSV files which can be easily maintained both in a text editor and tools like Microsoft Excel. The file name should match the table being loaded. So if I&amp;rsquo;m loading a table named &lt;em&gt;Accounts&lt;/em&gt; then the file should be &lt;em&gt;Accounts.csv&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can download the latest version of the tool here: &lt;a href=&#34;https://github.com/dpiessens/DatabaseDataLoader/releases&#34;&gt;https://github.com/dpiessens/DatabaseDataLoader/releases&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The folder structure dictates how things should be loaded. A top level folder groups the type of data. I like to use &amp;ldquo;base&amp;rdquo; for the core data, then a folder for each environment to hold things like test data. Inside those folders should be two additional folders: InsertOnly and Updateable. Files in InsertOnly will be checked by primary key and if the record exists it will be skipped. Files in Updateable will get inserted or updated on each run. Here&amp;rsquo;s an example structure:&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://www.danpiessens.com/images/post/deploying-databases-with-octopus-deploy-part-3/FileStructure.png&#34;  /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;p&gt;To run the loader simply call the executable with a connection string and a base path similar to this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+DatabaseDataLoader.exe -baseDir &amp;lt;baseDirectory&amp;gt; -connection &amp;lt;connectionString&amp;gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;connection&lt;/em&gt; argument should be a .NET connection string to the database that is loaded. The &lt;em&gt;baseDir&lt;/em&gt; argument specifies the base directory to load data from. From the sample above, it would either be the full path to &lt;em&gt;base&lt;/em&gt; or &lt;em&gt;QA&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The tool makes it easy to edit data, update it and load it in. Nothing special really needs to be done to the CSV files, the main idea is that data is loaded with the database constraints disabled so that ordering, hierarchy etc. do not need to be maintained. The tool reflects the actual database schema and does all the appropriate data conversions so data is validated on insert and failures will be reflected for all lines that don&amp;rsquo;t load correctly.&lt;/p&gt;
+
+&lt;h2 id=&#34;using-the-loader-with-a-database-deploy:27e6dd6eb7db9dd8cc04e86bb947cdcc&#34;&gt;Using the loader with a database deploy&lt;/h2&gt;
+
+&lt;p&gt;Similar to &lt;a href=&#34;http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2&#34;&gt;Part 2&lt;/a&gt;, you will need a Deploy.ps1 file, but this one will load the data in addition to deploying any schema update. The additional scripting will load the base data first, then look at the target environment name and look for a matching directory. If it finds that it will do the load on that directory as well. A sample file looks like this:&lt;/p&gt;
+
+&lt;p&gt;
+&lt;pre  data-src=&#34;/downloads/code/deploying-databases-with-octopus-deploy-part-3/Deploy.ps1&#34;&gt;&lt;/pre&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Notice that the tooling expects that DatabaseDataLoader.exe is packed up with the rest of the deployment, so it should be checked into your database project. Normally I would do this as a NuGet package, but database projects don&amp;rsquo;t support NuGet at this point. Also I added a global variable called &lt;em&gt;$SkipDataLoad&lt;/em&gt; so you can disable it if you need to for any reason during the deployment process.&lt;/p&gt;
+
+&lt;p&gt;Hopefully you&amp;rsquo;ve found this series helpful with deploying databases, until next time, keep pushing to production!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Deploying Databases With Octopus Deploy: Part 2</title>
+      <link>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/</link>
+      <pubDate>Tue, 10 Jun 2014 08:00:00 -0500</pubDate>
+      
+      <guid>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/</guid>
+      <description>
+
+&lt;p&gt;Continuing with my series on deploying databases with Octopus Deploy, I want to cover an area that people commonly know is possible but often struggle with the details: Deploying with Entity Framework Migrations.&lt;/p&gt;
+
+&lt;p&gt;Entity Framework Migrations are in concept simple. The EF team provides a great executable (migrate.exe) located in the tools folder of the NuGet package to perform the migration. Packaging it up can be a little more tricky.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2 id=&#34;project-setup:8c8bdc024288e233a9df1eceff3ddfb8&#34;&gt;Project Setup&lt;/h2&gt;
+
+&lt;p&gt;When creating your deployment package for Octopus, you&amp;rsquo;re going to want to include the migrate.exe file. Since NuGet packages everything from the root of the project, you&amp;rsquo;re going to need to provide the path to the file relative to the project root. You&amp;rsquo;re also going to need the PowerShell script to run the executable and everything you have compiled for the project (in this case what&amp;rsquo;s in the release directory). An example of this is in the MyApp.nuspec file below.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;pre class=&#34;language-xml&#34; data-src=&#34;/downloads/code/deploying-databases-with-octopus-deploy-part-2/MyApp.nuspec&#34;&gt;&lt;/pre&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The Deploy.ps1 deployment script is fairly simple, the first several lines setup the paths to the executable and tooling. The last line, 18, is the one that does all the work. The first argument is the .dll that contains the migration scripts. You will want to change this for your project. The second argument (&lt;em&gt;/startUpConfigurationFile&lt;/em&gt;) let&amp;rsquo;s the tool know the application has a configuration file that should be respected. This can be necessary if you are trying to bootstrap things like the ASP.NET 1.0 Identity Provider&amp;hellip; but that&amp;rsquo;s for another post. The final arguments specify the target server and driver and that the system should do verbose logging. I&amp;rsquo;ve found this to be very helpful when debugging problems with deployment.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;pre  data-src=&#34;/downloads/code/deploying-databases-with-octopus-deploy-part-2/Deploy.ps1&#34;&gt;&lt;/pre&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&#34;deployment-in-octopus:8c8bdc024288e233a9df1eceff3ddfb8&#34;&gt;Deployment In Octopus&lt;/h2&gt;
+
+&lt;p&gt;Building the deployment package in your CI server is simple. If you&amp;rsquo;re using TeamCity, you can use &lt;a href=&#34;http://docs.octopusdeploy.com/display/OD/TeamCity&#34;&gt;OctoPack&lt;/a&gt; as part of the build, or I would suggest creating a &lt;a href=&#34;http://confluence.jetbrains.com/display/TCD8/NuGet+Pack&#34;&gt;NuGet Package step&lt;/a&gt; to package up the file. From there you create a publish step to push it to your local repository or the new Octopus Deploy package repository if you&amp;rsquo;re using version 2.3 or later.&lt;/p&gt;
+
+&lt;p&gt;Once you have the deployment package, setting this up in Octopus is really straight forward. Create a new deployment step, I chose &amp;ldquo;Deploy Database&amp;rdquo;. Select the deployment package, the role you setup earlier and Configuration Variables feature to transform any needed settings.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://www.danpiessens.com/images/posts/DeployDatabaseProjectOctopusStep.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Once you save that add a variable named &lt;em&gt;ConnectionString&lt;/em&gt; to your deployment variables and set it for your environments. Once that&amp;rsquo;s in place you should be able to deploy your EF database projects.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Deploying Databases with Octopus Deploy: Part 1</title>
+      <link>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-1/</link>
+      <pubDate>Tue, 20 May 2014 15:00:55 -0500</pubDate>
+      
+      <guid>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-1/</guid>
+      <description>
+
+&lt;p&gt;One of the most common questions I get when helping people with Continuous Delivery is how to I push updates to my database? The traditional mindset is often create a folder of SQL scripts and make the deployment push the newest ones. The problem that often arises from this is there&amp;rsquo;s no rollback and things often get missed. There&amp;rsquo;s got to be a better way! Assuming your organization is (or will become) comfortable with tooling doing your updates, there&amp;rsquo;s some great options you have.&lt;/p&gt;
+
+&lt;p&gt;I want to use the next three posts to describe the 3 most common SQL deployment problems:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;.NET Database Projects (this post)&lt;/li&gt;
+&lt;li&gt;Entity Framework Code First&lt;/li&gt;
+&lt;li&gt;Seeding Data in Database Projects&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I&amp;rsquo;m going to use &lt;a href=&#34;http://www.octopusdeploy.com&#34; title=&#34;Octopus Deploy&#34;&gt;Octopus Deploy&lt;/a&gt; to demo how you can deploy this, but assuming you use a deployment tool that has a packaging concept you can use this in any deployment tool.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2 id=&#34;project-setup:0d4d35c0d03e9e1e48370c3c8ab0afde&#34;&gt;Project Setup&lt;/h2&gt;
+
+&lt;p&gt;The assumption here is that you&amp;rsquo;ve created a &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/hh272702.aspx&#34; title=&#34;SQL Database Project&#34;&gt;SQL Database Project&lt;/a&gt;. If you haven&amp;rsquo;t follow the link for instructions on how to create one. Once you have a project created, we&amp;rsquo;ll need to add the information for our CI server to package up the project. To do this there&amp;rsquo;s two things you&amp;rsquo;ll need: A packaging manifest (in this case a NuGet package) and a helper script to do the actual deployment.&lt;/p&gt;
+
+&lt;p&gt;To put together the manifest add a NuGet package that looks like the snippet below. In this case make sure you replace the &lt;em&gt;title&lt;/em&gt; and &lt;em&gt;name&lt;/em&gt; tags from MyApplication to your application name.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;pre class=&#34;language-xml&#34; data-src=&#34;/downloads/code/deploying-databases-with-octopus-deploy-part-1/ProjectPackage.nuspec&#34;&gt;&lt;/pre&gt;
+&lt;/p&gt;
+
+&lt;p&gt;A few things to note about the packaging: The main output from the project (assuming you use release mode) is the bin directory. It should contain everything you need to use to deploy the project. Additionally there&amp;rsquo;s the &lt;em&gt;DeploymentSetting.publish.xml&lt;/em&gt; file. This is the settings file you can define as part of the project to indicate what the project should do on deploy. A lot of people miss this file and it really impacts the deployment from critical scenarios. One simple example when a column could result in a data loss; you may want to allow or deny it. Most people allow it but you need to specify it in this file. Finally there&amp;rsquo;s the &lt;em&gt;Deploy.ps1&lt;/em&gt; file. This is the file that takes care of the actual deployment.&lt;/p&gt;
+
+&lt;p&gt;The Deploy.ps1 file is what does most of the magic. The script is really straight forward, it first checks to see if you have a variable named &lt;em&gt;ConnectionString&lt;/em&gt;. Since that is needed to point at the database you want to deploy to, we fail if it doesn&amp;rsquo;t exist. Next, we get the other things we need to deploy. We get the content directory that we specified in the NuGet file and find the .dacpac file that the CI server will create from the project. We&amp;rsquo;ll also get the publish settings file. The final path looks for SQL Server Data Tools to do the deployment, the next section will discuss that setup. I&amp;rsquo;ve included some output lines to write that path information. Finally the last line if the file performs the publish to the target server. It pipes the output to a &lt;code&gt;Write-Host&lt;/code&gt; command so it logs any output while it&amp;rsquo;s running.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;pre  data-src=&#34;/downloads/code/deploying-databases-with-octopus-deploy-part-1/Deploy.ps1&#34;&gt;&lt;/pre&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&#34;sql-server-setup:0d4d35c0d03e9e1e48370c3c8ab0afde&#34;&gt;SQL Server Setup&lt;/h2&gt;
+
+&lt;p&gt;In order to do the deployment we need to get the &lt;a href=&#34;http://www.microsoft.com/en-us/download/details.aspx?id=38818&#34;&gt;SQL Server Data Tools&lt;/a&gt; executable The link is for 2012, but you can easily find the tool for different versions of SQL. Unforunately this tool is too extensive to package with the deploy so we&amp;rsquo;ll need to install it on the server doing the deployment.&lt;/p&gt;
+
+&lt;p&gt;If you haven&amp;rsquo;t done so already you&amp;rsquo;ll want to setup an &lt;a href=&#34;http://docs.octopusdeploy.com/display/OD/Installing+Tentacles&#34;&gt;Octopus Tentacle agent&lt;/a&gt; and have it run under a windows account that has the set of permissions you need for deployment. This way, you don&amp;rsquo;t need to specify credentials in the connection string and only valid deployments can update the database. Make sure to register the agent with the main server and give it a database deployment role.&lt;/p&gt;
+
+&lt;h2 id=&#34;deployment-in-octopus:0d4d35c0d03e9e1e48370c3c8ab0afde&#34;&gt;Deployment In Octopus&lt;/h2&gt;
+
+&lt;p&gt;Building the deployment package in your CI server is simple. If you&amp;rsquo;re using TeamCity, you can use &lt;a href=&#34;http://docs.octopusdeploy.com/display/OD/TeamCity&#34;&gt;OctoPack&lt;/a&gt; as part of the build, or I would suggest creating a &lt;a href=&#34;http://confluence.jetbrains.com/display/TCD8/NuGet+Pack&#34;&gt;NuGet Package step&lt;/a&gt; to package up the file. From there you create a publish step to push it to your local repository or the new Octopus Deploy package repository if you&amp;rsquo;re using version 2.3 or later.&lt;/p&gt;
+
+&lt;p&gt;Once you have the deployment package, setting this up in Octopus is really straight forward. Create a new deployment step, I chose &amp;ldquo;Deploy Database&amp;rdquo;. Select the deployment package, the role you setup earlier and Configuration Variables feature to transform any needed settings.&lt;/p&gt;
+
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://www.danpiessens.com/images/post/deploying-databases-with-octopus-deploy-part-1/DeployDatabaseProjectOctopusStep.png&#34;  /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Once you save that add a variable named &lt;em&gt;ConnectionString&lt;/em&gt; to your deployment variables and set it for your environments. Once that&amp;rsquo;s in place you should be able to deploy your SQL database projects!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

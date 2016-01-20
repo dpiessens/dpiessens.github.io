@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Presentations on Another Level of Indirection</title>
+    <link>http://www.danpiessens.com/categories/presentations/</link>
+    <description>Recent content in Presentations on Another Level of Indirection</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>2015 Dan Piessens, All rights reserved.</copyright>
+    <lastBuildDate>Mon, 17 Nov 2014 15:46:42 -0600</lastBuildDate>
+    <atom:link href="http://www.danpiessens.com/categories/presentations/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>WI .NET user group slides</title>
+      <link>http://www.danpiessens.com/post/wi-net-user-group-slides/</link>
+      <pubDate>Mon, 17 Nov 2014 15:46:42 -0600</pubDate>
+      
+      <guid>http://www.danpiessens.com/post/wi-net-user-group-slides/</guid>
+      <description>&lt;p&gt;Thank you to everyone who attended my talk at the &lt;a href=&#34;http://www.wi-ineta.org/DesktopDefault.aspx?tabid=23&#34; title=&#34;WI .NET User group&#34;&gt;WI .NET User group&lt;/a&gt; last Tuesday. I posted the slides from the event below.&lt;/p&gt;
+
+&lt;p&gt;I also wanted to let everyone know that if you&amp;rsquo;re interested in a career at &lt;a href=&#34;http://www.centare.com/careers/current-opportunities&#34; title=&#34;Centare&#34;&gt;Centare&lt;/a&gt; or want to attend any of the other great events we put on, check out the &lt;a href=&#34;http://www.centare.com/events/&#34; title=&#34;Centare Events page&#34;&gt;Centare Events page&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;Slides: &lt;a href=&#34;http://www.danpiessens.com/downloads/code/WiNetUserGroup/IntroductionToDevOps.pdf&#34;&gt;IntroductionToDevOps.pdf&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>That Conference 2014 Presentation</title>
+      <link>http://www.danpiessens.com/post/that-conference-2014-presentation/</link>
+      <pubDate>Wed, 13 Aug 2014 12:16:24 -0500</pubDate>
+      
+      <guid>http://www.danpiessens.com/post/that-conference-2014-presentation/</guid>
+      <description>&lt;p&gt;I posted online the slides from my presentation at &lt;a href=&#34;https://www.thatconference.com/sessions/session/1228&#34; title=&#34;That Conference&#34;&gt;That Conference&lt;/a&gt;. There are resource links at the end of the presentation. Also see below if you would like to see the sample application I demoed during the presentation.&lt;/p&gt;
+
+&lt;p&gt;Slides: &lt;a href=&#34;http://www.danpiessens.com/downloads/code/ThatConference2014/BuildingStableCloudApplications.pdf&#34;&gt;BuildingStableCloudApplications.pdf&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Source: &lt;a href=&#34;https://github.com/dpiessens/cqrs-journey-code&#34;&gt;GitHub: dpiessens/cqrs-journey-code&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Building Stable Cloud Applications: Agile 2014</title>
+      <link>http://www.danpiessens.com/post/building-stable-cloud-applications-agile-2014/</link>
+      <pubDate>Tue, 05 Aug 2014 16:54:17 -0400</pubDate>
+      
+      <guid>http://www.danpiessens.com/post/building-stable-cloud-applications-agile-2014/</guid>
+      <description>&lt;p&gt;I posted online the slides from my presentation at &lt;a href=&#34;http://agile2014.agilealliance.org/program&#34; title=&#34;Agile 2014&#34;&gt;Agile 2014&lt;/a&gt;! It was great to be able to present, but I&amp;rsquo;ve got some more surprises for this talk at &lt;a href=&#34;https://www.thatconference.com&#34; title=&#34;That Conference&#34;&gt;That Conference&lt;/a&gt; on August 13! The presentation PDF is &lt;a href=&#34;http://www.danpiessens.com/downloads/code/Agile2014/BuildingStableAgileCloudApplications.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
