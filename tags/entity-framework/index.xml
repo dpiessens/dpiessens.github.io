@@ -6,7 +6,6 @@
     <description>Recent content in Entity Framework on Another Level of Indirection</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>2015 Dan Piessens, All rights reserved.</copyright>
     <lastBuildDate>Tue, 10 Jun 2014 08:00:00 -0500</lastBuildDate>
     <atom:link href="http://www.danpiessens.com/tags/entity-framework/index.xml" rel="self" type="application/rss+xml" />
     
@@ -28,15 +27,15 @@
 
 &lt;p&gt;When creating your deployment package for Octopus, you&amp;rsquo;re going to want to include the migrate.exe file. Since NuGet packages everything from the root of the project, you&amp;rsquo;re going to need to provide the path to the file relative to the project root. You&amp;rsquo;re also going to need the PowerShell script to run the executable and everything you have compiled for the project (in this case what&amp;rsquo;s in the release directory). An example of this is in the MyApp.nuspec file below.&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;pre class=&#34;language-xml&#34; data-src=&#34;/downloads/code/deploying-databases-with-octopus-deploy-part-2/MyApp.nuspec&#34;&gt;&lt;/pre&gt;
-&lt;/p&gt;
+
 
 &lt;p&gt;The Deploy.ps1 deployment script is fairly simple, the first several lines setup the paths to the executable and tooling. The last line, 18, is the one that does all the work. The first argument is the .dll that contains the migration scripts. You will want to change this for your project. The second argument (&lt;em&gt;/startUpConfigurationFile&lt;/em&gt;) let&amp;rsquo;s the tool know the application has a configuration file that should be respected. This can be necessary if you are trying to bootstrap things like the ASP.NET 1.0 Identity Provider&amp;hellip; but that&amp;rsquo;s for another post. The final arguments specify the target server and driver and that the system should do verbose logging. I&amp;rsquo;ve found this to be very helpful when debugging problems with deployment.&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;pre  data-src=&#34;/downloads/code/deploying-databases-with-octopus-deploy-part-2/Deploy.ps1&#34;&gt;&lt;/pre&gt;
-&lt;/p&gt;
+
 
 &lt;h2 id=&#34;deployment-in-octopus:8c8bdc024288e233a9df1eceff3ddfb8&#34;&gt;Deployment In Octopus&lt;/h2&gt;
 
@@ -44,14 +43,14 @@
 
 &lt;p&gt;Once you have the deployment package, setting this up in Octopus is really straight forward. Create a new deployment step, I chose &amp;ldquo;Deploy Database&amp;rdquo;. Select the deployment package, the role you setup earlier and Configuration Variables feature to transform any needed settings.&lt;/p&gt;
 
-&lt;p&gt;
+
 &lt;figure &gt;
     
         &lt;img src=&#34;http://www.danpiessens.com/images/posts/DeployDatabaseProjectOctopusStep.png&#34; /&gt;
     
     
 &lt;/figure&gt;
-&lt;/p&gt;
+
 
 &lt;p&gt;Once you save that add a variable named &lt;em&gt;ConnectionString&lt;/em&gt; to your deployment variables and set it for your environments. Once that&amp;rsquo;s in place you should be able to deploy your EF database projects.&lt;/p&gt;
 </description>

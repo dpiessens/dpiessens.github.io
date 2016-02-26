@@ -1,204 +1,461 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
-
+    <title>Devops &middot; Another Level of Indirection</title>
+    <meta name="generator" content="Hugo 0.15" />
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Dan Piessens">
+    
+      <meta name="description" content="A journey through the endless maze of Agile, DevOps, technology and life.">
+    
+    
+      <link href="http://www.danpiessens.com/categories/devops/index.xml" rel="alternate" type="application/rss+xml" title="Another Level of Indirection" />
+      <link href="http://www.danpiessens.com/categories/devops/index.xml" rel="feed" type="application/rss+xml" title="Another Level of Indirection" />
+    
+    <link rel="icon" href="http://www.danpiessens.comfavicon.ico">
+    <link rel="apple-touch-icon" href="http://www.danpiessens.comapple-touch-icon.png" />
+    <link rel="stylesheet" href="http://www.danpiessens.comcss/style.css">
+    <link rel="stylesheet" href="http://www.danpiessens.comcss/font-awesome.min.css">
+    <link rel="stylesheet" href="http://www.danpiessens.comcss/monokai.css">
+    <link rel="stylesheet" href="http://www.danpiessens.comfancybox/jquery.fancybox.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Devops" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://www.danpiessens.com/categories/devops/" />
 
-    <title>Devops -- Another Level of Indirection</title>
 
-    
-    <link href="http://www.danpiessens.com/categories/devops/index.xml" rel="alternate" type="application/rss+xml" title="Another Level of Indirection" />
-    <link href="http://www.danpiessens.com/categories/devops/index.xml" rel="feed" type="application/rss+xml" title="Another Level of Indirection" />
-    
+<meta property="og:updated_time" content="2014-08-13T12:16:24-05:00"/>
 
-    
-    <link href="http://www.danpiessens.com/css/bootstrap.min.css" rel="stylesheet">
 
-    
-    <link href="http://www.danpiessens.com/css/clean-blog.min.css" rel="stylesheet">
 
-    
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+
+
+
+
 
     
     
-    
-    
-    
-    <link href="http://www.danpiessens.com/css/prism.css" rel="stylesheet">
+<meta itemprop="name" content="Devops">
+<meta itemprop="description" content="">
 
+
+    
+    
 </head>
-
 <body>
+<div class="container">
 
-    
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container-fluid">
+
+<div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="http://www.danpiessens.com" id="logo"><i class="logo" style="background-image: url('http://www.danpiessens.comcss/images/logo.png')"></i><span class="site-title">Another Level of Indirection</span></a>
+      <nav id="main-nav">
+          
+          
+          
+
+          
+
+          
+          
+          <a class="main-nav-link" href="http://www.danpiessens.com/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="http://www.danpiessens.comcss/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" results="0" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="q" value="site:http://www.danpiessens.com">
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          
+
+          
+
+          
+          
+          <td><a class="main-nav-link" href="http://www.danpiessens.com/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" results="0" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="q" value="site:http://www.danpiessens.com">
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+    <div class="outer">
+        <section id="main">
+            <section class="archives-wrap">
+                <div class="archive-category-wrap">
+                    <span class="archive-category">Devops</span>
+                </div>
+                <div class="archives">
+                    
+                    
+                        <article class="archive-article archive-type-post">
+    <div class="archive-article-inner">
+        <div class="archive-article-thumbnail">
             
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="http://www.danpiessens.com/">Another Level of Indirection</a>
-            </div>
-
-                       
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    
-                    <li>
-                        <a href="http://www.danpiessens.com/">home</a>
-                    </li>
-                    
-                    <li>
-                        <a href="http://www.danpiessens.com/post/">Archives</a>
-                    </li>
-                    
-                  </ul>
-            </div>
-           
-
+            <a href="http://www.danpiessens.com/post/that-conference-2014-presentation/" class="thumbnail">
+                <span class="thumbnail-image thumbnail-none"></span>
+            </a>
+            
         </div>
+        <header class="archive-article-header">
+            <h1 itemprop="name">
+            <a class="archive-article-title" href="http://www.danpiessens.com/post/that-conference-2014-presentation/">That Conference 2014 Presentation</a>
+            </h1>
+            <div class="archive-article-date">
+                <i class="fa fa-calendar"></i>
+                <time datetime="2014-08-13 12:16:24 -0500 CDT" itemprop="datePublished">2014-08-13</time>
+            </div>
+        </header>
+    </div>
+</article> 
+                    
+                </div>
+            </section>
+            <nav id="page-nav">
+
+</nav>
+
+        </section>
+        <aside id="sidebar">
+    <aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      <img id="avatar" src="http://www.danpiessens.comcss/images/avatar.png">
+      <h2 id="name">Dan Piessens</h2>
+      
+      
+      
+          <a id="follow" href="https://www.github.com/dpiessens">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        6
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
         
-    </nav>
-
-
-    
-    <header class="intro-header" style="background-image: url('http://www.danpiessens.com/img/home-bg.jpg')">
-     <div class="container">
-       <div class="row">
-         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-           <div class="site-heading">
-             <h1>Devops</h1>
-             <hr class="small">
-             <span class="subheading"></span>
-           </div>
-         </div>
-       </div>
-     </div>
-    </header>
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          8
           
-                             <div class="post-preview">
-                  <p class="post-meta"><a href="http://www.danpiessens.com/post/wi-net-user-group-slides/">WI .NET user group slides</a> on November 17, 2014
-                    <br />
-                    In <a href="http://www.danpiessens.com/categories/presentations" >Presentations</a>, <a href="http://www.danpiessens.com/categories/.net" >.NET</a>, <a href="http://www.danpiessens.com/categories/devops" >DevOps</a>, 
-
-                    Tags 
-
-                  </p>
-               </div>
-
-          
-                             <div class="post-preview">
-                  <p class="post-meta"><a href="http://www.danpiessens.com/post/that-conference-2014-presentation/">That Conference 2014 Presentation</a> on August 13, 2014
-                    <br />
-                    In <a href="http://www.danpiessens.com/categories/presentations" >Presentations</a>, <a href="http://www.danpiessens.com/categories/cloud" >Cloud</a>, <a href="http://www.danpiessens.com/categories/devops" >DevOps</a>, 
-
-                    Tags 
-
-                  </p>
-               </div>
-
-          
-                             <div class="post-preview">
-                  <p class="post-meta"><a href="http://www.danpiessens.com/post/building-stable-cloud-applications-agile-2014/">Building Stable Cloud Applications: Agile 2014</a> on August 5, 2014
-                    <br />
-                    In <a href="http://www.danpiessens.com/categories/presentations" >Presentations</a>, <a href="http://www.danpiessens.com/categories/cloud" >Cloud</a>, <a href="http://www.danpiessens.com/categories/devops" >DevOps</a>, 
-
-                    Tags 
-
-                  </p>
-               </div>
-
-          
-          
-    
-        </div>
+        <span>
+            Tags
+        </span>
       </div>
     </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+          
+<td><a href="//github.com/dpiessens" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
 
-    <hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//linkedin.com/in/danielpiessens" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/dpiessens" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+          <td><a href="http://www.danpiessens.com/categories/devops/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
     
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                  <ul class="list-inline text-center">
-                    <li>
-                      <a href="mailto:">
-                        <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                    </li>
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Recents
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li class="no-thumbnail">
+                <div class="item-inner">
+                    <p class="item-title"><a href="http://www.danpiessens.com/post/wi-net-user-group-slides/" class="title">WI .NET user group slides</a></p>
                     
-                    <li>
-                      <a href="https://twitter.com/dpiessens">
-                        <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                    </li>
+                    <p class="item-category">
+                        <a class="article-category-link" href="http://www.danpiessens.comcategories/presentations">
+                        Presentations
+                        </a>
+                    </p>
                     
-                    <li>
-                      <a href="https://github.com/dpiessens">
-                        <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                      </a>
-                    </li>
-                    
-                  </ul>
-                  <p class="copyright text-muted">2015 Dan Piessens, All rights reserved.</p>
+                    <p class="item-date">
+                        <time datetime="2014-11-17 15:46:42 -0600 CST" itemprop="datePublished">2014-11-17</time>
+                    </p>
                 </div>
-            </div>
-        </div>
-    </footer>
+            </li>
+            
+            <li class="no-thumbnail">
+                <div class="item-inner">
+                    <p class="item-title"><a href="http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-3/" class="title">Deploying databases with Octopus Deploy Part 3</a></p>
+                    
+                    <p class="item-category">
+                        <a class="article-category-link" href="http://www.danpiessens.comcategories/database">
+                        Database
+                        </a>
+                    </p>
+                    
+                    <p class="item-date">
+                        <time datetime="2014-09-06 15:00:00 -0500 CDT" itemprop="datePublished">2014-09-06</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li class="no-thumbnail">
+                <div class="item-inner">
+                    <p class="item-title"><a href="http://www.danpiessens.com/post/that-conference-2014-presentation/" class="title">That Conference 2014 Presentation</a></p>
+                    
+                    <p class="item-category">
+                        <a class="article-category-link" href="http://www.danpiessens.comcategories/presentations">
+                        Presentations
+                        </a>
+                    </p>
+                    
+                    <p class="item-date">
+                        <time datetime="2014-08-13 12:16:24 -0500 CDT" itemprop="datePublished">2014-08-13</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li class="no-thumbnail">
+                <div class="item-inner">
+                    <p class="item-title"><a href="http://www.danpiessens.com/post/building-stable-cloud-applications-agile-2014/" class="title">Building Stable Cloud Applications: Agile 2014</a></p>
+                    
+                    <p class="item-category">
+                        <a class="article-category-link" href="http://www.danpiessens.comcategories/presentations">
+                        Presentations
+                        </a>
+                    </p>
+                    
+                    <p class="item-date">
+                        <time datetime="2014-08-05 16:54:17 -0400 -0400" itemprop="datePublished">2014-08-05</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li class="no-thumbnail">
+                <div class="item-inner">
+                    <p class="item-title"><a href="http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/" class="title">Deploying Databases With Octopus Deploy: Part 2</a></p>
+                    
+                    <p class="item-date">
+                        <time datetime="2014-06-10 08:00:00 -0500 CDT" itemprop="datePublished">2014-06-10</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
 
     
-    <script src="http://www.danpiessens.com/js/jquery.min.js"></script>
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                <a class="category-list-link" href="http://www.danpiessens.comcategories/cloud">
+                    cloud
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                <a class="category-list-link" href="http://www.danpiessens.comcategories/continuous-delivery">
+                    continuous-delivery
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                <a class="category-list-link" href="http://www.danpiessens.comcategories/database">
+                    database
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                <a class="category-list-link" href="http://www.danpiessens.comcategories/deployment">
+                    deployment
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                <a class="category-list-link" href="http://www.danpiessens.comcategories/devops">
+                    devops
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                <a class="category-list-link" href="http://www.danpiessens.comcategories/presentations">
+                    presentations
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
 
     
-    <script src="http://www.danpiessens.com/js/bootstrap.min.js"></script>
-
     
-    <script src="http://www.danpiessens.com/js/clean-blog.js"></script>
 
-    
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Tag cloud
+    </h3>
+    <div class="widget tagcloud">
+        
+        <a href="http://www.danpiessens.comtags/.net" style="font-size: 12px;">.net</a>
+        
+        <a href="http://www.danpiessens.comtags/cloud" style="font-size: 12px;">cloud</a>
+        
+        <a href="http://www.danpiessens.comtags/continuous-delivery" style="font-size: 12px;">continuous-delivery</a>
+        
+        <a href="http://www.danpiessens.comtags/database" style="font-size: 12px;">database</a>
+        
+        <a href="http://www.danpiessens.comtags/deployment" style="font-size: 12px;">deployment</a>
+        
+        <a href="http://www.danpiessens.comtags/devops" style="font-size: 12px;">devops</a>
+        
+        <a href="http://www.danpiessens.comtags/entity-framework" style="font-size: 12px;">entity-framework</a>
+        
+        <a href="http://www.danpiessens.comtags/octopus-deploy" style="font-size: 12px;">octopus-deploy</a>
+        
+    </div>
+</div>
+
+
+
+
+    <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+
+    </div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016
+      2015 Dan Piessens, All rights reserved.  Powered by <a href="//gohugo.io">Hugo</a>.
+    </div>
+  </div>
+</footer>
+
+
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-46643958-2', 'auto');
-  ga('send', 'pageview');
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-46643958-2', 'auto');
+ga('send', 'pageview');
 </script>
 
-    
-    
-    <script src="http://www.danpiessens.com/javascript/prism.js"></script>
-...
-</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://www.danpiessens.comfancybox/jquery.fancybox.pack.js"></script>
+<script src="http://www.danpiessens.comjs/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
-</body>
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
+<script src="http://www.danpiessens.com/javascript/prism.js"></script>
+</body>
 </html>
-
