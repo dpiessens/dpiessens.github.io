@@ -11,10 +11,10 @@
     
     <item>
       <title>WI .NET user group slides</title>
-      <link>http://www.danpiessens.com/2014/11/17/wi-.net-user-group-slides</link>
+      <link>http://www.danpiessens.com/post/wi-net-user-group-slides/</link>
       <pubDate>Mon, 17 Nov 2014 15:46:42 -0600</pubDate>
       
-      <guid>http://www.danpiessens.com/2014/11/17/wi-.net-user-group-slides</guid>
+      <guid>http://www.danpiessens.com/post/wi-net-user-group-slides/</guid>
       <description>&lt;p&gt;Thank you to everyone who attended my talk at the &lt;a href=&#34;http://www.wi-ineta.org/DesktopDefault.aspx?tabid=23&#34; title=&#34;WI .NET User group&#34;&gt;WI .NET User group&lt;/a&gt; last Tuesday. I posted the slides from the event below.&lt;/p&gt;
 
 &lt;p&gt;I also wanted to let everyone know that if you&amp;rsquo;re interested in a career at &lt;a href=&#34;http://www.centare.com/careers/current-opportunities&#34; title=&#34;Centare&#34;&gt;Centare&lt;/a&gt; or want to attend any of the other great events we put on, check out the &lt;a href=&#34;http://www.centare.com/events/&#34; title=&#34;Centare Events page&#34;&gt;Centare Events page&lt;/a&gt;!&lt;/p&gt;
@@ -25,10 +25,10 @@
     
     <item>
       <title>Deploying databases with Octopus Deploy Part 3</title>
-      <link>http://www.danpiessens.com/2014/09/06/deploying-databases-with-octopus-deploy-part-3</link>
+      <link>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-3/</link>
       <pubDate>Sat, 06 Sep 2014 15:00:00 -0500</pubDate>
       
-      <guid>http://www.danpiessens.com/2014/09/06/deploying-databases-with-octopus-deploy-part-3</guid>
+      <guid>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-3/</guid>
       <description>
 
 &lt;p&gt;Completing my series on deploying databases with Octopus Deploy, I want to cover how to deal with a common gap when working with SQL Database Projects and SQL Server Data Tools (SSDT): seeding data into the database.&lt;/p&gt;
@@ -64,7 +64,7 @@ DatabaseDataLoader.exe -baseDir &amp;lt;baseDirectory&amp;gt; -connection &amp;l
 
 &lt;h2 id=&#34;using-the-loader-with-a-database-deploy:27e6dd6eb7db9dd8cc04e86bb947cdcc&#34;&gt;Using the loader with a database deploy&lt;/h2&gt;
 
-&lt;p&gt;Similar to &lt;a href=&#34;http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2&#34;&gt;Part 2&lt;/a&gt;, you will need a Deploy.ps1 file, but this one will load the data in addition to deploying any schema update. The additional scripting will load the base data first, then look at the target environment name and look for a matching directory. If it finds that it will do the load on that directory as well. A sample file looks like this:&lt;/p&gt;
+&lt;p&gt;Similar to &lt;a href=&#34;http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/&#34;&gt;Part 2&lt;/a&gt;, you will need a Deploy.ps1 file, but this one will load the data in addition to deploying any schema update. The additional scripting will load the base data first, then look at the target environment name and look for a matching directory. If it finds that it will do the load on that directory as well. A sample file looks like this:&lt;/p&gt;
 
 
 &lt;pre  data-src=&#34;/downloads/code/deploying-databases-with-octopus-deploy-part-3/Deploy.ps1&#34;&gt;&lt;/pre&gt;
@@ -78,10 +78,10 @@ DatabaseDataLoader.exe -baseDir &amp;lt;baseDirectory&amp;gt; -connection &amp;l
     
     <item>
       <title>That Conference 2014 Presentation</title>
-      <link>http://www.danpiessens.com/2014/08/13/that-conference-2014-presentation</link>
+      <link>http://www.danpiessens.com/post/that-conference-2014-presentation/</link>
       <pubDate>Wed, 13 Aug 2014 12:16:24 -0500</pubDate>
       
-      <guid>http://www.danpiessens.com/2014/08/13/that-conference-2014-presentation</guid>
+      <guid>http://www.danpiessens.com/post/that-conference-2014-presentation/</guid>
       <description>&lt;p&gt;I posted online the slides from my presentation at &lt;a href=&#34;https://www.thatconference.com/sessions/session/1228&#34; title=&#34;That Conference&#34;&gt;That Conference&lt;/a&gt;. There are resource links at the end of the presentation. Also see below if you would like to see the sample application I demoed during the presentation.&lt;/p&gt;
 
 &lt;p&gt;Slides: &lt;a href=&#34;http://www.danpiessens.com/downloads/code/ThatConference2014/BuildingStableCloudApplications.pdf&#34;&gt;BuildingStableCloudApplications.pdf&lt;/a&gt;&lt;/p&gt;
@@ -92,20 +92,20 @@ DatabaseDataLoader.exe -baseDir &amp;lt;baseDirectory&amp;gt; -connection &amp;l
     
     <item>
       <title>Building Stable Cloud Applications: Agile 2014</title>
-      <link>http://www.danpiessens.com/2014/08/05/building-stable-cloud-applications-agile-2014</link>
+      <link>http://www.danpiessens.com/post/building-stable-cloud-applications-agile-2014/</link>
       <pubDate>Tue, 05 Aug 2014 16:54:17 -0400</pubDate>
       
-      <guid>http://www.danpiessens.com/2014/08/05/building-stable-cloud-applications-agile-2014</guid>
+      <guid>http://www.danpiessens.com/post/building-stable-cloud-applications-agile-2014/</guid>
       <description>&lt;p&gt;I posted online the slides from my presentation at &lt;a href=&#34;http://agile2014.agilealliance.org/program&#34; title=&#34;Agile 2014&#34;&gt;Agile 2014&lt;/a&gt;! It was great to be able to present, but I&amp;rsquo;ve got some more surprises for this talk at &lt;a href=&#34;https://www.thatconference.com&#34; title=&#34;That Conference&#34;&gt;That Conference&lt;/a&gt; on August 13! The presentation PDF is &lt;a href=&#34;http://www.danpiessens.com/downloads/code/Agile2014/BuildingStableAgileCloudApplications.pdf&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Deploying Databases With Octopus Deploy: Part 2</title>
-      <link>http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2</link>
+      <link>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/</link>
       <pubDate>Tue, 10 Jun 2014 08:00:00 -0500</pubDate>
       
-      <guid>http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2</guid>
+      <guid>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/</guid>
       <description>
 
 &lt;p&gt;Continuing with my series on deploying databases with Octopus Deploy, I want to cover an area that people commonly know is possible but often struggle with the details: Deploying with Entity Framework Migrations.&lt;/p&gt;
@@ -147,10 +147,10 @@ DatabaseDataLoader.exe -baseDir &amp;lt;baseDirectory&amp;gt; -connection &amp;l
     
     <item>
       <title>Deploying Databases with Octopus Deploy: Part 1</title>
-      <link>http://www.danpiessens.com/2014/05/20/deploying-databases-with-octopus-deploy-part-1</link>
+      <link>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-1/</link>
       <pubDate>Tue, 20 May 2014 15:00:55 -0500</pubDate>
       
-      <guid>http://www.danpiessens.com/2014/05/20/deploying-databases-with-octopus-deploy-part-1</guid>
+      <guid>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-1/</guid>
       <description>
 
 &lt;p&gt;One of the most common questions I get when helping people with Continuous Delivery is how to I push updates to my database? The traditional mindset is often create a folder of SQL scripts and make the deployment push the newest ones. The problem that often arises from this is there&amp;rsquo;s no rollback and things often get missed. There&amp;rsquo;s got to be a better way! Assuming your organization is (or will become) comfortable with tooling doing your updates, there&amp;rsquo;s some great options you have.&lt;/p&gt;
