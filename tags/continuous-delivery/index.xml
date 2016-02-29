@@ -11,10 +11,10 @@
     
     <item>
       <title>Deploying databases with Octopus Deploy Part 3</title>
-      <link>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-3/</link>
+      <link>http://www.danpiessens.com/2014/09/06/deploying-databases-with-octopus-deploy-part-3</link>
       <pubDate>Sat, 06 Sep 2014 15:00:00 -0500</pubDate>
       
-      <guid>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-3/</guid>
+      <guid>http://www.danpiessens.com/2014/09/06/deploying-databases-with-octopus-deploy-part-3</guid>
       <description>
 
 &lt;p&gt;Completing my series on deploying databases with Octopus Deploy, I want to cover how to deal with a common gap when working with SQL Database Projects and SQL Server Data Tools (SSDT): seeding data into the database.&lt;/p&gt;
@@ -50,7 +50,7 @@ DatabaseDataLoader.exe -baseDir &amp;lt;baseDirectory&amp;gt; -connection &amp;l
 
 &lt;h2 id=&#34;using-the-loader-with-a-database-deploy:27e6dd6eb7db9dd8cc04e86bb947cdcc&#34;&gt;Using the loader with a database deploy&lt;/h2&gt;
 
-&lt;p&gt;Similar to &lt;a href=&#34;http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/&#34;&gt;Part 2&lt;/a&gt;, you will need a Deploy.ps1 file, but this one will load the data in addition to deploying any schema update. The additional scripting will load the base data first, then look at the target environment name and look for a matching directory. If it finds that it will do the load on that directory as well. A sample file looks like this:&lt;/p&gt;
+&lt;p&gt;Similar to &lt;a href=&#34;http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2&#34;&gt;Part 2&lt;/a&gt;, you will need a Deploy.ps1 file, but this one will load the data in addition to deploying any schema update. The additional scripting will load the base data first, then look at the target environment name and look for a matching directory. If it finds that it will do the load on that directory as well. A sample file looks like this:&lt;/p&gt;
 
 
 &lt;pre  data-src=&#34;/downloads/code/deploying-databases-with-octopus-deploy-part-3/Deploy.ps1&#34;&gt;&lt;/pre&gt;
@@ -64,10 +64,10 @@ DatabaseDataLoader.exe -baseDir &amp;lt;baseDirectory&amp;gt; -connection &amp;l
     
     <item>
       <title>Deploying Databases With Octopus Deploy: Part 2</title>
-      <link>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/</link>
+      <link>http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2</link>
       <pubDate>Tue, 10 Jun 2014 08:00:00 -0500</pubDate>
       
-      <guid>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/</guid>
+      <guid>http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2</guid>
       <description>
 
 &lt;p&gt;Continuing with my series on deploying databases with Octopus Deploy, I want to cover an area that people commonly know is possible but often struggle with the details: Deploying with Entity Framework Migrations.&lt;/p&gt;
@@ -109,10 +109,10 @@ DatabaseDataLoader.exe -baseDir &amp;lt;baseDirectory&amp;gt; -connection &amp;l
     
     <item>
       <title>Deploying Databases with Octopus Deploy: Part 1</title>
-      <link>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-1/</link>
+      <link>http://www.danpiessens.com/2014/05/20/deploying-databases-with-octopus-deploy-part-1</link>
       <pubDate>Tue, 20 May 2014 15:00:55 -0500</pubDate>
       
-      <guid>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-1/</guid>
+      <guid>http://www.danpiessens.com/2014/05/20/deploying-databases-with-octopus-deploy-part-1</guid>
       <description>
 
 &lt;p&gt;One of the most common questions I get when helping people with Continuous Delivery is how to I push updates to my database? The traditional mindset is often create a folder of SQL scripts and make the deployment push the newest ones. The problem that often arises from this is there&amp;rsquo;s no rollback and things often get missed. There&amp;rsquo;s got to be a better way! Assuming your organization is (or will become) comfortable with tooling doing your updates, there&amp;rsquo;s some great options you have.&lt;/p&gt;

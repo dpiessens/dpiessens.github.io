@@ -11,10 +11,10 @@
     
     <item>
       <title>Deploying Databases With Octopus Deploy: Part 2</title>
-      <link>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/</link>
+      <link>http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2</link>
       <pubDate>Tue, 10 Jun 2014 08:00:00 -0500</pubDate>
       
-      <guid>http://www.danpiessens.com/post/deploying-databases-with-octopus-deploy-part-2/</guid>
+      <guid>http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2</guid>
       <description>
 
 &lt;p&gt;Continuing with my series on deploying databases with Octopus Deploy, I want to cover an area that people commonly know is possible but often struggle with the details: Deploying with Entity Framework Migrations.&lt;/p&gt;

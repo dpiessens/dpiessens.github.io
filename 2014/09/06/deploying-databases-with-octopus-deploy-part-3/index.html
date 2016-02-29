@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>Posts &middot; Another Level of Indirection</title>
+    <title>Deploying databases with Octopus Deploy Part 3 &middot; Another Level of Indirection</title>
     <meta name="generator" content="Hugo 0.15" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -9,9 +9,6 @@
     
       <meta name="description" content="A journey through the endless maze of Agile, DevOps, technology and life.">
     
-    
-      <link href="http://www.danpiessens.com/post/index.xml" rel="alternate" type="application/rss+xml" title="Another Level of Indirection" />
-      <link href="http://www.danpiessens.com/post/index.xml" rel="feed" type="application/rss+xml" title="Another Level of Indirection" />
     
     <link rel="icon" href="http://www.danpiessens.com/favicon.ico">
     <link rel="apple-touch-icon" href="http://www.danpiessens.com/apple-touch-icon.png" />
@@ -21,29 +18,47 @@
     <link rel="stylesheet" href="http://www.danpiessens.com/fancybox/jquery.fancybox.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://www.danpiessens.com/post/" />
+    <meta property="og:title" content="Deploying databases with Octopus Deploy Part 3" />
+<meta property="og:description" content="Completing my series on deploying databases with Octopus Deploy, I want to cover how to deal with a common gap when working with SQL Database Projects and SQL Server Data Tools (SSDT): seeding data into the database. Most people deal with this by using PostDeployment SQL scripts that do merge queries to insert or update the data. While this technique works, the data isn&rsquo;t very readable and can be difficult to maintain as the data set or number of tables grow." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.danpiessens.com/2014/09/06/deploying-databases-with-octopus-deploy-part-3" />
 
 
-<meta property="og:updated_time" content="2014-11-17T15:46:42-06:00"/>
-
-
-
+<meta property="og:updated_time" content="2014-09-06T15:00:00-05:00"/>
 
 
 
 
 
 
-    
-    
-<meta itemprop="name" content="Posts">
-<meta itemprop="description" content="">
+
+
 
 
     
+    
+<meta itemprop="name" content="Deploying databases with Octopus Deploy Part 3">
+<meta itemprop="description" content="Completing my series on deploying databases with Octopus Deploy, I want to cover how to deal with a common gap when working with SQL Database Projects and SQL Server Data Tools (SSDT): seeding data into the database. Most people deal with this by using PostDeployment SQL scripts that do merge queries to insert or update the data. While this technique works, the data isn&rsquo;t very readable and can be difficult to maintain as the data set or number of tables grow.">
+
+
+<meta itemprop="dateModified" content="2014-09-06T15:00:00-05:00" />
+<meta itemprop="wordCount" content="563">
+
+
+
+<meta itemprop="keywords" content="cloud,continuous-delivery,database,deployment,devops,presentations,.net,cloud,continuous-delivery,database,deployment,devops,entity-framework,octopus-deploy," />
+
+    
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Deploying databases with Octopus Deploy Part 3"/>
+<meta name="twitter:description" content="Completing my series on deploying databases with Octopus Deploy, I want to cover how to deal with a common gap when working with SQL Database Projects and SQL Server Data Tools (SSDT): seeding data into the database. Most people deal with this by using PostDeployment SQL scripts that do merge queries to insert or update the data. While this technique works, the data isn&rsquo;t very readable and can be difficult to maintain as the data set or number of tables grow."/>
+<meta name="twitter:site" content="@dpiessens"/>
+
+
     
 <link href="http://www.danpiessens.com//css/prism.css" rel="stylesheet">
 </head>
@@ -52,7 +67,7 @@
 
 
 <div id="container">
-    <header id="header">
+	<header id="header">
   <div id="header-main" class="header-inner">
     <div class="outer">
       <a href="http://www.danpiessens.com/" id="logo"><i class="logo" style="background-image: url('http://www.danpiessens.com/css/images/logo.png')"></i><span class="site-title">Another Level of Indirection</span></a>
@@ -111,151 +126,185 @@
   </div>
 </header>
 
-    <div class="outer">
-        <section id="main">
-            <section class="archives-wrap">
-                <div class="archive-category-wrap">
-                    <span class="archive-category">Posts</span>
-                </div>
-                <div class="archives">
-                    
-                    
-                        <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <div class="archive-article-thumbnail">
+   	
+   	<div class="outer">
+	    <section id="main">
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+        <div class="article-inner">
             
-            <a href="http://www.danpiessens.com/2014/11/17/wi-.net-user-group-slides" class="thumbnail">
-                <span class="thumbnail-image thumbnail-none"></span>
-            </a>
-            
-        </div>
-        <header class="archive-article-header">
-            <h1 itemprop="name">
-            <a class="archive-article-title" href="http://www.danpiessens.com/2014/11/17/wi-.net-user-group-slides">WI .NET user group slides</a>
-            </h1>
-            <div class="archive-article-date">
-                <i class="fa fa-calendar"></i>
-                <time datetime="2014-11-17 15:46:42 -0600 CST" itemprop="datePublished">2014-11-17</time>
-            </div>
-        </header>
-    </div>
-</article> 
-                    
-                        <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <div class="archive-article-thumbnail">
-            
-            <a href="http://www.danpiessens.com/2014/09/06/deploying-databases-with-octopus-deploy-part-3" class="thumbnail">
-                <span class="thumbnail-image thumbnail-none"></span>
-            </a>
-            
-        </div>
-        <header class="archive-article-header">
-            <h1 itemprop="name">
-            <a class="archive-article-title" href="http://www.danpiessens.com/2014/09/06/deploying-databases-with-octopus-deploy-part-3">Deploying databases with Octopus Deploy Part 3</a>
-            </h1>
-            <div class="archive-article-date">
-                <i class="fa fa-calendar"></i>
-                <time datetime="2014-09-06 15:00:00 -0500 CDT" itemprop="datePublished">2014-09-06</time>
-            </div>
-        </header>
-    </div>
-</article> 
-                    
-                        <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <div class="archive-article-thumbnail">
-            
-            <a href="http://www.danpiessens.com/2014/08/13/that-conference-2014-presentation" class="thumbnail">
-                <span class="thumbnail-image thumbnail-none"></span>
-            </a>
-            
-        </div>
-        <header class="archive-article-header">
-            <h1 itemprop="name">
-            <a class="archive-article-title" href="http://www.danpiessens.com/2014/08/13/that-conference-2014-presentation">That Conference 2014 Presentation</a>
-            </h1>
-            <div class="archive-article-date">
-                <i class="fa fa-calendar"></i>
-                <time datetime="2014-08-13 12:16:24 -0500 CDT" itemprop="datePublished">2014-08-13</time>
-            </div>
-        </header>
-    </div>
-</article> 
-                    
-                        <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <div class="archive-article-thumbnail">
-            
-            <a href="http://www.danpiessens.com/2014/08/05/building-stable-cloud-applications-agile-2014" class="thumbnail">
-                
-                <span style="background-image:url(http://www.danpiessens.com/images/post/building-stable-cloud-applications-agile-2014/agile2014_banner_home.jpg)" alt="Building Stable Cloud Applications: Agile 2014" class="thumbnail-image"></span>
-                
-            </a>
-            
-        </div>
-        <header class="archive-article-header">
-            <h1 itemprop="name">
-            <a class="archive-article-title" href="http://www.danpiessens.com/2014/08/05/building-stable-cloud-applications-agile-2014">Building Stable Cloud Applications: Agile 2014</a>
-            </h1>
-            <div class="archive-article-date">
-                <i class="fa fa-calendar"></i>
-                <time datetime="2014-08-05 16:54:17 -0400 -0400" itemprop="datePublished">2014-08-05</time>
-            </div>
-        </header>
-    </div>
-</article> 
-                    
-                        <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <div class="archive-article-thumbnail">
-            
-            <a href="http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2" class="thumbnail">
-                <span class="thumbnail-image thumbnail-none"></span>
-            </a>
-            
-        </div>
-        <header class="archive-article-header">
-            <h1 itemprop="name">
-            <a class="archive-article-title" href="http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2">Deploying Databases With Octopus Deploy: Part 2</a>
-            </h1>
-            <div class="archive-article-date">
-                <i class="fa fa-calendar"></i>
-                <time datetime="2014-06-10 08:00:00 -0500 CDT" itemprop="datePublished">2014-06-10</time>
-            </div>
-        </header>
-    </div>
-</article> 
-                    
-                        <article class="archive-article archive-type-post">
-    <div class="archive-article-inner">
-        <div class="archive-article-thumbnail">
-            
-            <a href="http://www.danpiessens.com/2014/05/20/deploying-databases-with-octopus-deploy-part-1" class="thumbnail">
-                <span class="thumbnail-image thumbnail-none"></span>
-            </a>
-            
-        </div>
-        <header class="archive-article-header">
-            <h1 itemprop="name">
-            <a class="archive-article-title" href="http://www.danpiessens.com/2014/05/20/deploying-databases-with-octopus-deploy-part-1">Deploying Databases with Octopus Deploy: Part 1</a>
-            </h1>
-            <div class="archive-article-date">
-                <i class="fa fa-calendar"></i>
-                <time datetime="2014-05-20 15:00:55 -0500 CDT" itemprop="datePublished">2014-05-20</time>
-            </div>
-        </header>
-    </div>
-</article> 
-                    
-                </div>
-            </section>
-            <nav id="page-nav">
 
+            <header class="article-header">
+    <a href="http://www.danpiessens.com/2014/09/06/deploying-databases-with-octopus-deploy-part-3">
+    <h1 class="article-title" itemprop="name">
+        Deploying databases with Octopus Deploy Part 3
+    </h1>
+    </a>
+    <div class="article-meta">
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2014-09-06 15:00:00 -0500 CDT" itemprop="datePublished">2014-09-06</time>
+            &middot;
+            563
+            words
+            &middot;
+            3
+            minute read
+        </div>
+        
+
+        
+        
+            
+            
+            <br/>
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                <a class="article-category-link" href="http://www.danpiessens.com/categories/database">Database</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://www.danpiessens.com/categories/deployment">Deployment</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://www.danpiessens.com/categories/continuous-delivery">Continuous Delivery</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                <a class="article-category-link" href="http://www.danpiessens.com/tags/octopus-deploy">Octopus Deploy</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://www.danpiessens.com/tags/database">Database</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://www.danpiessens.com/tags/deployment">Deployment</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://www.danpiessens.com/tags/.net">.NET</a>
+                &middot;
+                
+                <a class="article-category-link" href="http://www.danpiessens.com/tags/continuous-delivery">Continuous Delivery</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+            <div class="article-entry" itemprop="articleBody">
+                
+
+<p>Completing my series on deploying databases with Octopus Deploy, I want to cover how to deal with a common gap when working with SQL Database Projects and SQL Server Data Tools (SSDT): seeding data into the database.</p>
+
+<p>Most people deal with this by using PostDeployment SQL scripts that do merge queries to insert or update the data. While this technique works, the data isn&rsquo;t very readable and can be difficult to maintain as the data set or number of tables grow. It can also be difficult to work around foreign key constraints to make sure data is loaded in the correct order. Allow me to present an alternative&hellip;</p>
+
+<!-- more -->
+
+<h2 id="introducing-databasedataloader:27e6dd6eb7db9dd8cc04e86bb947cdcc">Introducing DatabaseDataLoader</h2>
+
+<p>I created a simple, open source utility to simplify the problem. The tool is based on using CSV files which can be easily maintained both in a text editor and tools like Microsoft Excel. The file name should match the table being loaded. So if I&rsquo;m loading a table named <em>Accounts</em> then the file should be <em>Accounts.csv</em>.</p>
+
+<p>You can download the latest version of the tool here: <a href="https://github.com/dpiessens/DatabaseDataLoader/releases">https://github.com/dpiessens/DatabaseDataLoader/releases</a></p>
+
+<p>The folder structure dictates how things should be loaded. A top level folder groups the type of data. I like to use &ldquo;base&rdquo; for the core data, then a folder for each environment to hold things like test data. Inside those folders should be two additional folders: InsertOnly and Updateable. Files in InsertOnly will be checked by primary key and if the record exists it will be skipped. Files in Updateable will get inserted or updated on each run. Here&rsquo;s an example structure:</p>
+
+
+<figure >
+    <img src="http://www.danpiessens.com/images/post/deploying-databases-with-octopus-deploy-part-3/FileStructure.png"  />
+    
+</figure>
+
+
+<p>To run the loader simply call the executable with a connection string and a base path similar to this:</p>
+
+<p><code>
+DatabaseDataLoader.exe -baseDir &lt;baseDirectory&gt; -connection &lt;connectionString&gt;
+</code></p>
+
+<p>The <em>connection</em> argument should be a .NET connection string to the database that is loaded. The <em>baseDir</em> argument specifies the base directory to load data from. From the sample above, it would either be the full path to <em>base</em> or <em>QA</em>.</p>
+
+<p>The tool makes it easy to edit data, update it and load it in. Nothing special really needs to be done to the CSV files, the main idea is that data is loaded with the database constraints disabled so that ordering, hierarchy etc. do not need to be maintained. The tool reflects the actual database schema and does all the appropriate data conversions so data is validated on insert and failures will be reflected for all lines that don&rsquo;t load correctly.</p>
+
+<h2 id="using-the-loader-with-a-database-deploy:27e6dd6eb7db9dd8cc04e86bb947cdcc">Using the loader with a database deploy</h2>
+
+<p>Similar to <a href="http://www.danpiessens.com/2014/06/10/deploying-databases-with-octopus-deploy-part-2">Part 2</a>, you will need a Deploy.ps1 file, but this one will load the data in addition to deploying any schema update. The additional scripting will load the base data first, then look at the target environment name and look for a matching directory. If it finds that it will do the load on that directory as well. A sample file looks like this:</p>
+
+
+<pre  data-src="/downloads/code/deploying-databases-with-octopus-deploy-part-3/Deploy.ps1"></pre>
+
+
+<p>Notice that the tooling expects that DatabaseDataLoader.exe is packed up with the rest of the deployment, so it should be checked into your database project. Normally I would do this as a NuGet package, but database projects don&rsquo;t support NuGet at this point. Also I added a global variable called <em>$SkipDataLoad</em> so you can disable it if you need to for any reason during the deployment process.</p>
+
+<p>Hopefully you&rsquo;ve found this series helpful with deploying databases, until next time, keep pushing to production!</p>
+
+            </div>
+            <footer class="article-footer">
+    <a data-url="http://www.danpiessens.com/2014/09/06/deploying-databases-with-octopus-deploy-part-3" data-id="27e6dd6eb7db9dd8cc04e86bb947cdcc" class="article-share-link">
+        Share
+    </a>
+    
+    <a href="http://www.danpiessens.com/2014/09/06/deploying-databases-with-octopus-deploy-part-3/#disqus_thread" class="article-comment-link">
+        Comments
+    </a>
+    
+</footer>
+
+        </div>
+
+        
+<nav id="article-nav">
+    
+    <a href="http://www.danpiessens.com/2014/08/13/that-conference-2014-presentation" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">That Conference 2014 Presentation</div>
+    </a>
+    
+
+    
+    <a href="http://www.danpiessens.com/2014/11/17/wi-.net-user-group-slides" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">WI .NET user group slides</div>
+    </a>
+    
 </nav>
 
-        </section>
-        <aside id="sidebar">
+
+    </article>
+    <section id="comments">
+        <div id="disqus_thread">
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'dpiessens';
+    var disqus_identifier = 'http:\/\/www.danpiessens.com\/2014\/09\/06\/deploying-databases-with-octopus-deploy-part-3';
+    var disqus_title = 'Deploying databases with Octopus Deploy Part 3';
+    var disqus_url = 'http:\/\/www.danpiessens.com\/2014\/09\/06\/deploying-databases-with-octopus-deploy-part-3';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </section>
+
+</section>
+
+	    <aside id="sidebar">
     <aside id="profile">
   <div class="inner profile-inner">
     <div class="base-info profile-block">
@@ -341,7 +390,7 @@
 
 <td><a href="//twitter.com/dpiessens" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
 
-          <td><a href="http://www.danpiessens.com/post/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+          <td><a href="" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
         </tr>
       </table>
     </div>
@@ -532,7 +581,7 @@
     <div id="toTop" class="fa fa-chevron-up"></div>
 </aside>
 
-    </div>
+	</div>
 </div>
 
 <footer id="footer">
